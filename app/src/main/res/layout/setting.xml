@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.google.android.material.appbar.AppBarLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ToolbarTheme1"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_marginTop="15dp"
+            android:id="@+id/toolbar"
+            app:elevation="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="设置"
+                android:id="@+id/toolbar_title"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/change_pass_lin"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <TextView
+                    android:layout_marginLeft="21dp"
+                    android:layout_centerVertical="true"
+                    android:text="修改密码"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    />
+                <ImageView
+                    android:layout_marginRight="31dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="8dp"
+                    android:layout_height="17dp"
+                    android:src="@mipmap/backs"
+                    />
+
+            </RelativeLayout>
+            <View
+                android:layout_marginLeft="21dp"
+                android:layout_marginRight="31dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F9F9F9"
+                />
+            <RelativeLayout
+                android:id="@+id/login_out"
+                android:layout_width="match_parent"
+                android:layout_height="60dp">
+                <TextView
+                    android:layout_marginLeft="21dp"
+                    android:layout_centerVertical="true"
+                    android:text="退出登录"
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    />
+                <ImageView
+                    android:layout_marginRight="31dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_width="8dp"
+                    android:layout_height="17dp"
+                    android:src="@mipmap/backs"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

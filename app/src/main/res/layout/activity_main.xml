@@ -1,0 +1,28 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <include android:id="@+id/titlebar"
+        layout="@layout/title_xml"/>
+    <me.majiajie.pagerbottomtabstrip.PageBottomTabLayout
+        android:id="@+id/tab"
+        android:elevation="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFF"
+        />
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titlebar"
+        android:layout_above="@id/tab">
+
+    </FrameLayout>
+</RelativeLayout>

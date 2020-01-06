@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/serach"
+    android:layout_margin="10dp"
+    android:padding="4dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="主机厂名称:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/testMainEnginePlants"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="主机厂批次:"
+            />
+        <TextView
+            android:textSize="15sp"
+            android:id="@+id/testMainEnginePlantsBatch"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建日期:"
+            />
+        <TextView
+            android:textSize="15sp"
+            android:id="@+id/createDate"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2323"
+            />
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建人:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/createPerson"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="备注:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/remark"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="台次数:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/total"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未入场数量:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/noent"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

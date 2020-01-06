@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FoldTextView">
+        <attr name="showMaxLine" format="integer" />
+        <attr name="tipGravity" format="integer" />
+        <attr name="tipColor" format="reference|color" />
+        <attr name="tipClickable" format="boolean" />
+        <attr name="foldText" format="string" />
+        <attr name="expandText" format="string" />
+        <attr name="showTipAfterExpand" format="boolean" />
+        <attr name="isSetParentClick" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="AttachButton">
+        <!--是否需要自动吸边-->
+        <attr name="customIsAttach" format="boolean" />
+        <!--是否可拖曳-->
+        <attr name="customIsDrag" format="boolean" />
+    </declare-styleable>
+</resources>

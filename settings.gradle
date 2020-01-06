@@ -1,0 +1,2 @@
+include ':app', ':NineGridView', ':takephoto_library'
+rootProject.name='CarAssistant'

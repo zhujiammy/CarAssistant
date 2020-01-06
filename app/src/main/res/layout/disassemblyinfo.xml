@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="拆解方式:"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/dismantleType"
+                    android:textSize="12sp"
+                    android:textColor="@color/grey_700"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="江苏无锡"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="确定拆解方式时间:"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/determineTime"
+                    android:textSize="12sp"
+                    android:textColor="@color/grey_700"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="江苏无锡"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="拆解方式确认人:"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    />
+                <TextView
+                    android:id="@+id/determinePerson"
+                    android:textSize="12sp"
+                    android:textColor="@color/grey_700"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="江苏无锡"
+                    />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,166 @@
+package com.example.carassistant.Presenter;
+
+import android.annotation.TargetApi;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+
+import com.example.carassistant.API.CarAssistantAPI;
+import com.example.carassistant.APP.CarApp;
+import com.example.carassistant.Interface.ProductionApprovalInterface;
+import com.example.carassistant.Interface.RetrieveVehicleInterface;
+import com.example.carassistant.Interface.VehicleWeigInterface;
+import com.example.carassistant.Interface.VehiclesNumberInterface;
+import com.example.carassistant.R;
+import com.example.carassistant.View.ExtensionDetailsActivity;
+import com.example.carassistant.View.OptionsDetailsActivity;
+import com.example.carassistant.View.ProductionApprovalActivity;
+import com.example.carassistant.View.VehicleWeighingActivity;
+import com.example.carassistant.adapter.RetrieveVehicleAdapter;
+import com.example.carassistant.adapter.VehicleWeigAdapter;
+import com.example.carassistant.adapter.VehiclesNumberAdapter;
+import com.example.carassistant.adapter.productionApproveAdapter;
+import com.example.carassistant.retrofit.HttpHelper;
+import com.example.carassistant.utils.RecyclerViewEmptySupport;
+import com.example.carassistant.utils.Utils;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.io.IOException;
+import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class ProductionApprovalPresenter implements ProductionApprovalInterface.Presenter {
+    public ProductionApprovalInterface.View view;
+    public ProductionApprovalActivity context;
+    JsonArray jsonElements;
+    private productionApproveAdapter adapter;
+    private ProgressDialog progressDialog;
+    RecyclerViewEmptySupport recyclerView;
+    private String[] carDetailIds;
+    public ProductionApprovalPresenter(ProductionApprovalInterface.View view,ProductionApprovalActivity context,RecyclerViewEmptySupport recyclerView,productionApproveAdapter adapter){
+        this.view = view;
+        this.context =context;
+        this.adapter = adapter;
+        this.recyclerView = recyclerView;
+    }
+
+
+
+    @Override
+    public void productionApprove(String searchInfo) {
+        Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).productionApprove(Utils.getShared2(context,"token"),searchInfo);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.body()!=null){
+                    try {
+                        String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
+                        JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
+                        Log.e("TAG", "onResponse: "+jsonStr );
+                        if(jsonObject.get("status").getAsInt() == 0){
+                            jsonElements = jsonObject.getAsJsonArray("data");
+                            adapter = new productionApproveAdapter(context,jsonElements,2);
+                            recyclerView.setAdapter(adapter);
+                            view.onRefresh();
+
+
+                        }else {
+                            Toast.makeText(context,jsonObject.get("msg").getAsString(),Toast.LENGTH_LONG).show();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
+                Log.e("TAG", "onResponse: "+t.getMessage() );
+            }
+        });
+    }
+
+    public static String[] toStringArray(List<String> strList) {
+        String[] array = new String[strList.size()];
+        strList.toArray(array);
+        return array;
+    }
+
+    public void print(){
+
+        carDetailIds = new String[adapter.getCheckBoxIDList().size()];
+        //审批通过
+        final AlertDialog.Builder alterDiaglog = new AlertDialog.Builder(context);
+        alterDiaglog.setTitle("提示");//文字
+        alterDiaglog.setMessage("确定审批通过吗？");//提示消息
+        alterDiaglog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                progressDialog = new ProgressDialog(context,
+                        R.style.AppTheme_Dark_Dialog);
+                progressDialog.setIndeterminate(true);
+                progressDialog.setMessage("正在提交....");
+                progressDialog.show();
+                Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).productionApprovea(Utils.getShared2(context,"token"),toStringArray(adapter.getCheckBoxIDList()));
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if(response.body()!=null){
+                            try {
+                                String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
+                                JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
+                                if(jsonObject.get("status").getAsInt() == 0){
+                                    Toast.makeText(context,"提交成功",Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                    context.finish();
+                                }else {
+                                    Toast.makeText(context,jsonObject.get("msg").getAsString(),Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(context,t.getMessage(),Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                });
+            }
+
+
+        });
+        alterDiaglog.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        //显示
+        alterDiaglog.show();
+
+    }
+}

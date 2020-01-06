@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/serach"
+    android:layout_margin="10dp"
+    android:padding="4dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+    <LinearLayout
+        android:layout_weight="5"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <CheckBox
+
+            android:id="@+id/checkbox"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </CheckBox>
+
+    </LinearLayout>
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:id="@+id/line_group"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/line_et"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:id="@+id/carDetailId"
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车源:"
+                />
+            <TextView
+                android:padding="3dp"
+                android:textSize="15sp"
+                android:id="@+id/carInfo"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="京A32323"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车辆编号:"
+                />
+            <TextView
+                android:textSize="15sp"
+                android:id="@+id/carCode"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2323"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/line4"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:textSize="15sp"
+                    android:textColor="@color/grey_700"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="主机厂编号:"
+                    />
+                <TextView
+                    android:textSize="15sp"
+                    android:id="@+id/testMainEnginePlantsNum"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2323"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:textSize="15sp"
+                    android:textColor="@color/grey_700"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="主机厂:"
+                    />
+                <TextView
+                    android:textSize="15sp"
+                    android:id="@+id/testMainEnginePlants"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2323"
+                    />
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="入场时间:"
+                />
+            <TextView
+                android:textSize="15sp"
+                android:id="@+id/erterTime"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2323"
+                />
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.google.android.material.appbar.AppBarLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ToolbarTheme1"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_marginTop="15dp"
+            android:id="@+id/toolbar"
+            app:elevation="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="待拆解确认车辆"
+                android:id="@+id/toolbar_title"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:background="@color/grey_700"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <EditText
+            android:id="@+id/serach_btn"
+            android:paddingLeft="10dp"
+            android:drawableLeft="@mipmap/serach"
+            android:background="@drawable/serach"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/grey_700"
+            android:gravity="center|left"
+            android:hint="     车牌号/车型/车辆编号"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/refreshLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.example.carassistant.utils.RecyclerViewEmptySupport
+                android:id="@+id/recyclerView"
+                android:elevation="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+                android:background="@color/gray"/>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+           <com.example.carassistant.utils.AttachButton
+            android:id="@+id/send"
+            android:visibility="gone"
+            android:background="@drawable/dragbutton"
+            android:layout_width="51dp"
+            android:layout_height="49dp"
+            android:src="@mipmap/qr_b"
+            android:padding="13dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="100dp"
+            />
+    </RelativeLayout>
+
+
+
+</LinearLayout>
