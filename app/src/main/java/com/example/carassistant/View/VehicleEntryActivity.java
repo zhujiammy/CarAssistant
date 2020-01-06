@@ -149,7 +149,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements View.OnCl
                 }else {
                     progressDialog = new ProgressDialog(VehicleEntryActivity.this,
                             R.style.AppTheme_Dark_Dialog);
-                    progressDialog.setIndeterminate(true);
+                         progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
                     progressDialog.setMessage("正在提交....");
                     progressDialog.show();
                     final File file = new File(filePath);
@@ -339,7 +341,9 @@ public class VehicleEntryActivity extends AppCompatActivity implements View.OnCl
         if(tp == 2){
             progressDialog = new ProgressDialog(VehicleEntryActivity.this,
                     R.style.AppTheme_Dark_Dialog);
-            progressDialog.setIndeterminate(true);
+                 progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
             progressDialog.setMessage("正在识别请稍等....");
             progressDialog.show();
             final File file = new File(result.getImage().getCompressPath());

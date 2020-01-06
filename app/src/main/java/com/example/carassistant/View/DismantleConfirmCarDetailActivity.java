@@ -255,7 +255,9 @@ public class DismantleConfirmCarDetailActivity extends AppCompatActivity impleme
             public void onClick(DialogInterface dialog, int which) {
                 progressDialog = new ProgressDialog(DismantleConfirmCarDetailActivity.this,
                         R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
+                     progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
                 progressDialog.setMessage("正在提交....");
                 progressDialog.show();
                 Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).sureDismantleConfirmCar(Utils.getShared2(getApplicationContext(),"token"),getIntent().getStringExtra("carDetailId"));

@@ -209,7 +209,9 @@ public class VehicleWeighingActivity extends AppCompatActivity implements View.O
         if(imgpath != null){
             progressDialog = new ProgressDialog(VehicleWeighingActivity.this,
                     R.style.AppTheme_Dark_Dialog);
-            progressDialog.setIndeterminate(true);
+                 progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
             progressDialog.setMessage("正在提交....");
             progressDialog.show();
             MultipartBody.Part part = MultipartBody.Part.createFormData("","");
@@ -288,7 +290,9 @@ public class VehicleWeighingActivity extends AppCompatActivity implements View.O
         } else {
             progressDialog = new ProgressDialog(VehicleWeighingActivity.this,
                     R.style.AppTheme_Dark_Dialog);
-            progressDialog.setIndeterminate(true);
+                 progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
             progressDialog.setMessage("正在提交....");
             progressDialog.show();
             final File file = new File(filePath);

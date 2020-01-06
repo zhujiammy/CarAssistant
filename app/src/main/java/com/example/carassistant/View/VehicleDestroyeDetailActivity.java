@@ -234,7 +234,9 @@ public class VehicleDestroyeDetailActivity extends AppCompatActivity implements 
             public void onClick(DialogInterface dialog, int which) {
                 progressDialog = new ProgressDialog(VehicleDestroyeDetailActivity.this,
                         R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
+                     progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
                 progressDialog.setMessage("正在提交....");
                 progressDialog.show();
 

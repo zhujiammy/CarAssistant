@@ -343,7 +343,9 @@ public class VehicleHandlingActivity extends AppCompatActivity implements View.O
     private  void saveCarPretreatmentDetail(int type){
         progressDialog = new ProgressDialog(this,
                 R.style.AppTheme_Dark_Dialog);
-        progressDialog.setIndeterminate(true);
+             progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
         progressDialog.setMessage("正在提交....");
         progressDialog.show();
         if(type == 1){

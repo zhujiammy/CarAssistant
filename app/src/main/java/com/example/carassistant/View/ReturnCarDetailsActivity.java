@@ -322,7 +322,9 @@ public class ReturnCarDetailsActivity extends AppCompatActivity implements View.
         } else {
             progressDialog = new ProgressDialog(ReturnCarDetailsActivity.this,
                     R.style.AppTheme_Dark_Dialog);
-            progressDialog.setIndeterminate(true);
+                 progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
             progressDialog.setMessage("正在提交....");
             progressDialog.show();
             Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).confirmDoCar(Utils.getShared2(getApplicationContext(),"token"),getIntent().getStringExtra("carDetailId"), retreat_reason.getText().toString());
@@ -368,7 +370,9 @@ public class ReturnCarDetailsActivity extends AppCompatActivity implements View.
         } else {
             progressDialog = new ProgressDialog(ReturnCarDetailsActivity.this,
                     R.style.AppTheme_Dark_Dialog);
-            progressDialog.setIndeterminate(true);
+                 progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
             progressDialog.setMessage("正在提交....");
             progressDialog.show();
             Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).confirmDoCarProcedure(Utils.getShared2(getApplicationContext(),"token"),getIntent().getStringExtra("carDetailId"), retreat_reason.getText().toString());

@@ -642,6 +642,8 @@ public class DisassembleDetailActivity extends AppCompatActivity implements View
                             progressDialog = new ProgressDialog(DisassembleDetailActivity.this,
                                     R.style.AppTheme_Dark_Dialog);
                             progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
                             progressDialog.setMessage("正在提交....");
                             progressDialog.show();
                             Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).saveChooseDismantleType(Utils.getShared2(getApplicationContext(),"token"),getIntent().getStringExtra("carDetailId"),dictionaryCode,warehouseId);

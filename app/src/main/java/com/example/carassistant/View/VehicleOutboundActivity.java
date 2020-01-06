@@ -429,7 +429,9 @@ public class VehicleOutboundActivity extends AppCompatActivity implements View.O
 
                 progressDialog = new ProgressDialog(VehicleOutboundActivity.this,
                         R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
+                     progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
                 progressDialog.setMessage("正在提交....");
                 progressDialog.show();
                 if(getIntent().getStringExtra("type").equals("1")){

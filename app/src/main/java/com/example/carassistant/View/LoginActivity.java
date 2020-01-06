@@ -81,7 +81,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //登录
                 progressDialog = new ProgressDialog(LoginActivity.this,
                         R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
+                     progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
                 progressDialog.setMessage("登陆中....");
                 progressDialog.show();
                 Map<String,Object> map = new HashMap<>();

@@ -172,7 +172,9 @@ public class FreeAdmissionActivity extends AppCompatActivity implements View.OnC
             }else {
                 progressDialog = new ProgressDialog(FreeAdmissionActivity.this,
                         R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
+                     progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
                 progressDialog.setMessage("正在提交....");
                 progressDialog.show();
                 final File file = new File(filePath);

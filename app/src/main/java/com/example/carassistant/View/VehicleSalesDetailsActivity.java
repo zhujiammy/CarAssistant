@@ -267,7 +267,9 @@ public class VehicleSalesDetailsActivity extends AppCompatActivity implements Vi
 
                 progressDialog = new ProgressDialog(VehicleSalesDetailsActivity.this,
                         R.style.AppTheme_Dark_Dialog);
-                progressDialog.setIndeterminate(true);
+                     progressDialog.setIndeterminate(true);
+                            progressDialog.setCanceledOnTouchOutside(false);
+                            progressDialog.setCancelable(false);
                 progressDialog.setMessage("正在提交....");
                 progressDialog.show();
                 Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).superviseDestroyCar(Utils.getShared2(getApplicationContext(),"token"),getIntent().getStringExtra("carDetailId"));
