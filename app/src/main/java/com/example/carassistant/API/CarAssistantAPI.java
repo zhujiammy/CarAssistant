@@ -206,6 +206,7 @@ public interface CarAssistantAPI {
             @Header("token") String token,
             @Query("searchInfo") String searchInfo  //车牌/车型/车辆编号
     );
+
     //试验车辆入库明细
     @GET("/chooseWarehouse/testcar/getWarehouseCarsDetails")
     Call<ResponseBody>getWarehouseCarsDetails(

@@ -161,12 +161,37 @@ public class SocialCarDetailsActivity extends AppCompatActivity implements HoldT
                         if(jsonObject.get("status").getAsInt() == 0){
                             JsonObject data = jsonObject.get("data").getAsJsonObject();
                             carCode.setText(data.get("carCode").getAsString());
-                            plateNumberNo.setText(data.get("plateNumberNo").getAsString());
-                            plateNumberColour.setText(data.get("plateNumberColour").getAsString());
-                            carColour.setText(data.get("carColour").getAsString());
-                            carBrandName.setText(data.get("carBrandName").getAsString());
-                            carVin.setText(data.get("carVin").getAsString());
-                            engineNo.setText(data.get("engineNo").getAsString());
+                            if(!data.get("plateNumberNo").isJsonNull()){
+                                plateNumberNo.setText(data.get("plateNumberNo").getAsString());
+                            }else {
+                                plateNumberNo.setText("无");
+                            }
+                            if(!data.get("plateNumberColour").isJsonNull()){
+                                plateNumberColour.setText(data.get("plateNumberColour").getAsString());
+                            }else {
+                                plateNumberColour.setText("无");
+                            }
+                            if(!data.get("carColour").isJsonNull()){
+                                carColour.setText(data.get("carColour").getAsString());
+                            }else {
+                                carColour.setText("无");
+                            }
+                            if(!data.get("carBrandName").isJsonNull()){
+                                carBrandName.setText(data.get("carBrandName").getAsString());
+                            }else {
+                                carBrandName.setText("无");
+                            }
+                            if(!data.get("carVin").isJsonNull()){
+                                carVin.setText(data.get("carVin").getAsString());
+                            }else {
+                                carVin.setText("无");
+                            }
+                            if(!data.get("engineNo").isJsonNull()){
+                                engineNo.setText(data.get("engineNo").getAsString());
+                            }else {
+                                engineNo.setText("无");
+                            }
+
                         }else {
                             Toast.makeText(getApplicationContext(),jsonObject.get("msg").getAsString(),Toast.LENGTH_LONG).show();
                         }
