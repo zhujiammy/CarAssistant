@@ -142,6 +142,8 @@
         <activity android:name=".View.TestVehicleDestroyeDetailActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
         <activity android:name=".View.ProductionApprovalActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
         <activity android:name=".View.TestDisassembleDetailActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
+        <activity android:name=".View.ChangePassActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
+
 
 
         <provider

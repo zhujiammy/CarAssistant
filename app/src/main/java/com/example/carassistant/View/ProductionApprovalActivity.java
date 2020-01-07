@@ -1,12 +1,16 @@
 package com.example.carassistant.View;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +26,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.carassistant.API.CarAssistantAPI;
@@ -46,6 +52,10 @@ import com.google.gson.JsonParser;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,6 +76,7 @@ public class ProductionApprovalActivity extends AppCompatActivity implements Pro
     RecyclerViewEmptySupport recyclerView;
     private LinearLayoutManager mLinearLayoutManager;
     private productionApproveAdapter adapter;
+    private static  int REQUEST_CODE = 1001;
 
     private ProductionApprovalPresenter presenter;
     @BindView(R.id.ok_btn)
@@ -89,14 +100,7 @@ public class ProductionApprovalActivity extends AppCompatActivity implements Pro
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(item.getItemId() == android.R.id.home){
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
     private void initUI(){
         ok_btn.setOnClickListener(this);
@@ -177,5 +181,81 @@ public class ProductionApprovalActivity extends AppCompatActivity implements Pro
         refreshLayout.finishLoadMoreWithNoMoreData();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.qrmenu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(item.getItemId() == android.R.id.home){
+            finish();
+        }
+        if (id == R.id.qr) {
+            //扫描仓库位置二维码
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // 没有权限，申请权限。
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA},1);
+
+            }else{
+                Intent intent = new Intent(this, CaptureActivity.class);
+                startActivityForResult(intent,REQUEST_CODE);
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE){
+            if(null != data){
+                Bundle bundle = data.getExtras();
+                if(bundle == null){
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    Log.e("TAG", "onActivityResult: "+result );
+                    testCarInfo(result);
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(this, "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+    private void testCarInfo(String result){
+        Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).testCarInfo(Utils.getShared2(getApplicationContext(),"token"),result,"207");
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.body()!=null){
+                    try {
+                        String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
+                        JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
+                        if(jsonObject.get("status").getAsInt() == 0){
+
+                            JsonObject data = jsonObject.get("data").getAsJsonObject();
+                            presenter.productionApprove(data.get("carCode").getAsString());
+
+                        }else {
+                            Toast.makeText(getApplicationContext(),jsonObject.get("msg").getAsString(),Toast.LENGTH_LONG).show();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
 
 }

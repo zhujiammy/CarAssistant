@@ -78,8 +78,8 @@ public class RetrieveVehiclePresenter implements RetrieveVehicleInterface.Presen
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
-                Log.e("TAG", "onResponse: "+t.getMessage() );
+                Toast.makeText(context,"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_LONG).show();
+                Log.e("TAG", "onResponse: "+"连接超时，请检查网络环境，避免影响使用！" );
             }
         });
     }

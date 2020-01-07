@@ -117,23 +117,71 @@ public class VehicleDetailsFragment extends Fragment {
                             }else {
                                 plateNumber.setText("无");
                             }
-                            newoldLevel.setText(data.get("newoldLevel").getAsString());
-                            remark.setText(data.get("remark").getAsString());
-                            airConditioningPumpAmount.setText(data.get("airConditioningPumpAmount").getAsString());
-                            carBatteryAmount.setText(data.get("carBatteryAmount").getAsString());
-                            carMotorAmount.setText(data.get("carMotorAmount").getAsString());
-                            carDoorAmount.setText(data.get("carDoorAmount").getAsString());
-                            carAluminumRingAmount.setText(data.get("carAluminumRingAmount").getAsString());
-                            carMotorsAmount.setText(data.get("carMotorsAmount").getAsString());
-                            isCarAluminumRing.setText(data.get("isCarAluminumRing").getAsString());
-                            carWaterTankAmount.setText(data.get("carWaterTankAmount").getAsString());
+                            if(!data.get("newoldLevel").isJsonNull()){
+                                newoldLevel.setText(data.get("newoldLevel").getAsString());
+                            }else {
+                                newoldLevel.setText("无");
+                            }
+                            if(!data.get("remark").isJsonNull()){
+                                remark.setText(data.get("remark").getAsString());
+                            }else {
+                                remark.setText("无");
+                            }
+
+                            if(!data.get("airConditioningPumpAmount").isJsonNull()){
+                                airConditioningPumpAmount.setText(data.get("airConditioningPumpAmount").getAsString());
+                            }else {
+                                airConditioningPumpAmount.setText("无");
+                            }
+                            if(!data.get("carBatteryAmount").isJsonNull()){
+                                carBatteryAmount.setText(data.get("carBatteryAmount").getAsString());
+                            }else {
+                                carBatteryAmount.setText("无");
+                            }
+                            if(!data.get("carMotorAmount").isJsonNull()){
+                                carMotorAmount.setText(data.get("carMotorAmount").getAsString());
+                            }else {
+                                carMotorAmount.setText("无");
+                            }
+
+                            if(!data.get("carDoorAmount").isJsonNull()){
+                                carDoorAmount.setText(data.get("carDoorAmount").getAsString());
+                            }else {
+                                carDoorAmount.setText("无");
+                            }
+                            if(!data.get("carAluminumRingAmount").isJsonNull()){
+                                carAluminumRingAmount.setText(data.get("carAluminumRingAmount").getAsString());
+                            }else {
+                                carAluminumRingAmount.setText("无");
+                            }
+                            if(!data.get("carMotorsAmount").isJsonNull()){
+                                carMotorsAmount.setText(data.get("carMotorsAmount").getAsString());
+                            }else {
+                                carMotorsAmount.setText("无");
+                            }
+                            if(!data.get("isCarAluminumRing").isJsonNull()){
+                                isCarAluminumRing.setText(data.get("isCarAluminumRing").getAsString());
+                            }else {
+                                isCarAluminumRing.setText("无");
+                            }
+                            if(!data.get("carWaterTankAmount").isJsonNull()){
+                                carWaterTankAmount.setText(data.get("carWaterTankAmount").getAsString());
+                            }else {
+                                carWaterTankAmount.setText("无");
+                            }
+
 
                             if(!data.get("weightOdd").isJsonNull()){
                                 weightOdd.setText(data.get("weightOdd").getAsString());
                             }else {
                                 weightOdd.setText("无");
                             }
-                            weight.setText(data.get("weight").getAsString());
+                            if(!data.get("weight").isJsonNull()){
+                                weight.setText(data.get("weight").getAsString());
+                            }else {
+                                weight.setText("无");
+                            }
+
                         }else {
                             Toast.makeText(getActivity(),jsonObject.get("msg").getAsString(),Toast.LENGTH_LONG).show();
                         }
@@ -145,8 +193,8 @@ public class VehicleDetailsFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_LONG).show();
-                Log.e("TAG", "onResponse: "+t.getMessage());
+                Toast.makeText(getActivity(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_LONG).show();
+                Log.e("TAG", "onResponse: "+"连接超时，请检查网络环境，避免影响使用！");
             }
         });
     }

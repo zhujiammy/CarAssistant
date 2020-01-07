@@ -9,6 +9,8 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.carassistant.retrofit.Constants.DEFAULT_TIMEOUT;
+
 public class HttpHelper {
     private static Retrofit mRetrofit;
 
@@ -46,9 +48,14 @@ public class HttpHelper {
 
     private HttpHelper() {
         Log.i("Constants", Constants.SERVER_URL);
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .retryOnConnectionFailure(false)
+                .connectTimeout(DEFAULT_TIMEOUT, TimeUnit.MILLISECONDS)
+                .build();
+
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(Constants.SERVER_URL)
-                .client(client)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())//往retrofit中装一个Gson插件
                 .build();
     }

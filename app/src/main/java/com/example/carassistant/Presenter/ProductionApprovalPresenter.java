@@ -92,8 +92,8 @@ public class ProductionApprovalPresenter implements ProductionApprovalInterface.
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
-                Log.e("TAG", "onResponse: "+t.getMessage() );
+                Toast.makeText(context,"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_LONG).show();
+                Log.e("TAG", "onResponse: "+"连接超时，请检查网络环境，避免影响使用！" );
             }
         });
     }
@@ -115,13 +115,13 @@ public class ProductionApprovalPresenter implements ProductionApprovalInterface.
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                progressDialog = new ProgressDialog(context,
-                        R.style.AppTheme_Dark_Dialog);
-                     progressDialog.setIndeterminate(true);
+                            progressDialog = new ProgressDialog(context,
+                            R.style.AppTheme_Dark_Dialog);
+                            progressDialog.setIndeterminate(true);
                             progressDialog.setCanceledOnTouchOutside(false);
                             progressDialog.setCancelable(false);
-                progressDialog.setMessage("正在提交....");
-                progressDialog.show();
+                            progressDialog.setMessage("正在提交....");
+                            progressDialog.show();
                 Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).productionApprovea(Utils.getShared2(context,"token"),toStringArray(adapter.getCheckBoxIDList()));
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
@@ -147,7 +147,7 @@ public class ProductionApprovalPresenter implements ProductionApprovalInterface.
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(context,t.getMessage(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context,"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 });

@@ -54,6 +54,7 @@ public class LoginPresenter implements LoginInterface.Presenter{
                             Utils.setShare2(context,"token",dataobject.get("token").getAsString());
                             Log.e("TAG", "onResponse: "+jsonStr );
                             Utils.setShare2(context,"userName",dataobject.get("userName").getAsString());
+                            Utils.setShare2(context,"userId",dataobject.get("userId").getAsString());
                             Utils.setShare2(context,"flag","1");
 
                             view.succeed();
@@ -69,7 +70,7 @@ public class LoginPresenter implements LoginInterface.Presenter{
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(context,t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
                 view.failed();
             }
         });

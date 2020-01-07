@@ -605,6 +605,27 @@ public interface CarAssistantAPI {
             @Query("carDetailIds") String[] carDetailIds  //车源明细id数组
     );
 
+    //扫一扫车辆信息
+    @GET("/carDetail/testCarInfo")
+    Call<ResponseBody>testCarInfo(
+            @Header("token") String token,
+            @Query("carDetailId") String carDetailId, //车源明细id数组
+            @Query("flowId") String flowId
+    );
+
+    //修改密码
+    @POST("/user/changePassword")
+    Call<ResponseBody>changePassword(
+            @Header("token") String token,
+            @Query("userId") String userId, //用户id
+            @Query("oldPassword") String oldPassword,//旧密码
+            @Query("newPassword") String newPassword//新密码
+    );
+
+
+
+
+
 
 
 

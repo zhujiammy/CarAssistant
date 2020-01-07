@@ -207,7 +207,7 @@ public class VehicleDestroyeDetailActivity extends AppCompatActivity implements 
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -277,7 +277,7 @@ public class VehicleDestroyeDetailActivity extends AppCompatActivity implements 
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     });
@@ -312,7 +312,7 @@ public class VehicleDestroyeDetailActivity extends AppCompatActivity implements 
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     });
@@ -352,9 +352,10 @@ public class VehicleDestroyeDetailActivity extends AppCompatActivity implements 
     @Override
     public void onNineGirdItemDeleted(int position, NineGridBean gridBean, NineGirdImageContainer imageContainer)
     {
-        //编辑模式下，某张图片被删除后回调这里
-        picAttachIds.remove(position);
-        Log.e("TAG", "onNineGirdItemClick: "+picAttachIds.size() );
+        if(picAttachIds!=null){
+            picAttachIds.remove(position);
+            Log.e("TAG", "onNineGirdItemClick: "+picAttachIds.size() );
+        }
     }
 
     @Override

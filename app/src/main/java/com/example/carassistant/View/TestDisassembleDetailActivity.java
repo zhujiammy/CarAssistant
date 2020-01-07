@@ -298,7 +298,7 @@ public class TestDisassembleDetailActivity extends AppCompatActivity implements 
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -313,7 +313,6 @@ public class TestDisassembleDetailActivity extends AppCompatActivity implements 
     }
 
     private void showdilgo(String str,String dictionaryCode){
-        Toast.makeText(getApplicationContext(),dictionaryCode,Toast.LENGTH_SHORT).show();
         final AlertDialog.Builder alterDiaglog = new AlertDialog.Builder(TestDisassembleDetailActivity.this);
         alterDiaglog.setTitle("提示");//文字
         alterDiaglog.setMessage("确定"+str+"吗？");//提示消息
@@ -355,7 +354,7 @@ public class TestDisassembleDetailActivity extends AppCompatActivity implements 
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     });

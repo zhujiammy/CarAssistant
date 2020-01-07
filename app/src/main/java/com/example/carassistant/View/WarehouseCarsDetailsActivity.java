@@ -456,7 +456,7 @@ public class WarehouseCarsDetailsActivity extends AppCompatActivity implements V
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -516,7 +516,7 @@ public class WarehouseCarsDetailsActivity extends AppCompatActivity implements V
 
                             @Override
                             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
                                 progressDialog.dismiss();
                             }
                         });
@@ -651,8 +651,8 @@ public class WarehouseCarsDetailsActivity extends AppCompatActivity implements V
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(WarehouseCarsDetailsActivity.this,t.getMessage(),Toast.LENGTH_LONG).show();
-                Log.e("TAG", "onResponse: "+t.getMessage());
+                Toast.makeText(WarehouseCarsDetailsActivity.this,"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_LONG).show();
+                Log.e("TAG", "onResponse: "+"连接超时，请检查网络环境，避免影响使用！");
             }
         });
     }

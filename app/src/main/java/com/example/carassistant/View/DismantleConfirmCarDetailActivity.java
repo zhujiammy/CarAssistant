@@ -233,7 +233,7 @@ public class DismantleConfirmCarDetailActivity extends AppCompatActivity impleme
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -287,7 +287,7 @@ public class DismantleConfirmCarDetailActivity extends AppCompatActivity impleme
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 });

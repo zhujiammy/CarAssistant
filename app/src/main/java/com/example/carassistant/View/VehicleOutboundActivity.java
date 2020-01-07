@@ -87,6 +87,16 @@ public class VehicleOutboundActivity extends AppCompatActivity implements View.O
     TextView testMainEnginePlants;
     @BindView(R.id.tv1)
     TextView tv1;
+    @BindView(R.id.plateNumberColour_lin)
+    LinearLayout plateNumberColour_lin;
+    @BindView(R.id.carDisplacement_lin)
+    LinearLayout carDisplacement_lin;
+    @BindView(R.id.doSupervise_lin)
+    LinearLayout doSupervise_lin;
+    @BindView(R.id.registerTime_lin)
+    LinearLayout registerTime_lin;
+    @BindView(R.id.useProperty_lin)
+    LinearLayout useProperty_lin;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +113,7 @@ public class VehicleOutboundActivity extends AppCompatActivity implements View.O
         }else {
             testcarsearchCarsDetails();
             tv1.setText("侧面");
+
         }
 
 
@@ -124,6 +135,11 @@ public class VehicleOutboundActivity extends AppCompatActivity implements View.O
         outbound_btn.setOnClickListener(this);
         if(getIntent().getStringExtra("type").equals("2")){
             plateNumberNo_lin.setVisibility(View.GONE);
+            plateNumberColour_lin.setVisibility(View.GONE);
+            carDisplacement_lin.setVisibility(View.GONE);
+            doSupervise_lin.setVisibility(View.GONE);
+            registerTime_lin.setVisibility(View.GONE);
+            useProperty_lin.setVisibility(View.GONE);
             line4.setVisibility(View.VISIBLE);
             testMainEnginePlantsNum.setText(getIntent().getStringExtra("testMainEnginePlantsNum"));
             testState.setText(getIntent().getStringExtra("testState"));
@@ -266,7 +282,7 @@ public class VehicleOutboundActivity extends AppCompatActivity implements View.O
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -405,7 +421,7 @@ public class VehicleOutboundActivity extends AppCompatActivity implements View.O
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -462,7 +478,7 @@ public class VehicleOutboundActivity extends AppCompatActivity implements View.O
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     });
@@ -494,7 +510,7 @@ public class VehicleOutboundActivity extends AppCompatActivity implements View.O
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
-                            Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
                     });

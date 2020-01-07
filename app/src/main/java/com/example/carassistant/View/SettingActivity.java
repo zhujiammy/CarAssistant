@@ -73,7 +73,8 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.change_pass_lin:
                 //修改密码
-
+                Intent intent = new Intent(getApplicationContext(),ChangePassActivity.class);
+                startActivity(intent);
                 break;
             case R.id.login_out:
                 //退出登录

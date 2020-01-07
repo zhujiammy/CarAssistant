@@ -163,7 +163,7 @@
                 android:text="入场时间:"
                 />
             <TextView
-                android:textSize="15sp"
+                android:textSize="12sp"
                 android:id="@+id/erterTime"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"

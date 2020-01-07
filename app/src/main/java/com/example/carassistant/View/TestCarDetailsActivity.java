@@ -48,10 +48,10 @@ public class TestCarDetailsActivity extends AppCompatActivity implements HoldTab
 
     @BindView(R.id.carCode)
     TextView carCode;//车辆编号
-    @BindView(R.id.plateNumberNo)
-    TextView plateNumberNo;//车牌号
-    @BindView(R.id.plateNumberColour)
-    TextView plateNumberColour;//车牌颜色
+    @BindView(R.id.testMainEnginePlants)
+    TextView testMainEnginePlants;//车牌号
+    @BindView(R.id.testMainEnginePlantsNum)
+    TextView testMainEnginePlantsNum;//车牌颜色
     @BindView(R.id.carColour)
     TextView carColour;//车身颜色
     @BindView(R.id.carBrandName)
@@ -85,7 +85,7 @@ public class TestCarDetailsActivity extends AppCompatActivity implements HoldTab
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-        setContentView(R.layout.socialcardetails);
+        setContentView(R.layout.testsocialcardetails);
         ButterKnife.bind(this);
         this.setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -155,13 +155,46 @@ public class TestCarDetailsActivity extends AppCompatActivity implements HoldTab
                         JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
                         if(jsonObject.get("status").getAsInt() == 0){
                             JsonObject data = jsonObject.get("data").getAsJsonObject();
-                            carCode.setText(data.get("carCode").getAsString());
-                            plateNumberNo.setText(data.get("plateNumberNo").getAsString());
-                            plateNumberColour.setText(data.get("plateNumberColour").getAsString());
-                            carColour.setText(data.get("carColour").getAsString());
-                            carBrandName.setText(data.get("carBrandName").getAsString());
-                            carVin.setText(data.get("carVin").getAsString());
-                            engineNo.setText(data.get("engineNo").getAsString());
+                            if(!jsonObject.get("data").isJsonNull()){
+                                carCode.setText(data.get("carCode").getAsString());
+                                if(!data.get("testMainEnginePlants").isJsonNull()){
+                                    testMainEnginePlants.setText(data.get("testMainEnginePlants").getAsString());
+                                }else {
+                                    testMainEnginePlants.setText("无");
+                                }
+                                if(!data.get("testMainEnginePlantsNum").isJsonNull()){
+                                    testMainEnginePlantsNum.setText(data.get("testMainEnginePlantsNum").getAsString());
+                                }else {
+                                    testMainEnginePlantsNum.setText("无");
+                                }
+
+                                if(!data.get("carColour").isJsonNull()){
+                                    carColour.setText(data.get("carColour").getAsString());
+                                }else {
+                                    carColour.setText("无");
+                                }
+
+                                if(!data.get("carBrandName").isJsonNull()){
+                                    carBrandName.setText(data.get("carBrandName").getAsString());
+                                }else {
+                                    carBrandName.setText("无");
+                                }
+
+                                if(!data.get("carVin").isJsonNull()){
+                                    carVin.setText(data.get("carVin").getAsString());
+                                }else {
+                                    carVin.setText("无");
+                                }
+
+                                if(!data.get("engineNo").isJsonNull()){
+                                    engineNo.setText(data.get("engineNo").getAsString());
+                                }else {
+                                    engineNo.setText("无");
+                                }
+                            }
+
+
+
                         }else {
                             Toast.makeText(getApplicationContext(),jsonObject.get("msg").getAsString(),Toast.LENGTH_LONG).show();
                         }
@@ -173,8 +206,8 @@ public class TestCarDetailsActivity extends AppCompatActivity implements HoldTab
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
-                Log.e("TAG", "onResponse: "+t.getMessage());
+                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_LONG).show();
+                Log.e("TAG", "onResponse: "+"连接超时，请检查网络环境，避免影响使用！");
             }
         });
     }
@@ -212,8 +245,8 @@ public class TestCarDetailsActivity extends AppCompatActivity implements HoldTab
             }
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_LONG).show();
-                Log.e("TAG", "onResponse: "+t.getMessage());
+                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_LONG).show();
+                Log.e("TAG", "onResponse: "+"连接超时，请检查网络环境，避免影响使用！");
             }
         });
     }

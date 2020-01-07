@@ -129,7 +129,7 @@ public class ExperimentalVehicle extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -219,7 +219,7 @@ public class ExperimentalVehicle extends Fragment {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Toast.makeText(getActivity(),t.getMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_LONG).show();
             }
         });
     }

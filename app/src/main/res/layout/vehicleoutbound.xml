@@ -245,6 +245,7 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/plateNumberColour_lin"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -291,6 +292,7 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/carDisplacement_lin"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -360,6 +362,7 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/doSupervise_lin"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -383,6 +386,7 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/registerTime_lin"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -429,6 +433,7 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/useProperty_lin"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
