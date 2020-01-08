@@ -70,6 +70,12 @@ public class AdmissionDetailsPresenter implements AdmissionDetailsInterface.Pres
                                     intent.putExtra("testState",object.get("testState").getAsString());
                                     intent.putExtra("carType",object.get("carType").getAsString());
                                     intent.putExtra("carDetailId",object.get("carDetailId").getAsString());
+                                    if(!object.get("testMainEnginePlants").isJsonNull()){
+                                        intent.putExtra("testMainEnginePlants",object.get("testMainEnginePlants").getAsString());
+                                    }else {
+                                        intent.putExtra("testMainEnginePlants","无");
+                                    }
+
                                     intent.putExtra("type","2");
                                     context.startActivity(intent);
 

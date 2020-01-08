@@ -111,23 +111,24 @@ public class TestCarDetailsActivity extends AppCompatActivity implements HoldTab
         VehicleDetailsFragment vehicleDetailsFragment = new VehicleDetailsFragment(viewPager);
         vehicleDetailsFragment.setArguments(bundle);
 
-        CarSourceInfofragment carSourceInfofragment = new CarSourceInfofragment(viewPager);
-        carSourceInfofragment.setArguments(bundle);
+        DisassemblyInfofragment disassemblyInfofragment = new DisassemblyInfofragment(viewPager);
+        disassemblyInfofragment.setArguments(bundle);
 
         ImageInfofragment imageInfofragment = new ImageInfofragment(viewPager);
         imageInfofragment.setArguments(bundle);
         mFragments.add(vehicleDetailsFragment);
-        mFragments.add(carSourceInfofragment);
+        mFragments.add(disassemblyInfofragment);
         mFragments.add(imageInfofragment);
-        list.add("车辆信息");
-        list.add("车源信息");
 
+        list.add("车辆信息");
+        list.add("拆解信息");
         list.add("图片信息");
+
         tablayout.setupWithViewPager(viewPager);
         viewPager.setAdapter(new Adapter(getSupportFragmentManager(),mFragments,list));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels){
 
             }
 
@@ -228,6 +229,7 @@ public class TestCarDetailsActivity extends AppCompatActivity implements HoldTab
                                 JsonObject object =data.get(i).getAsJsonObject();
                                 trace.setAcceptTime(object.get("processDate").getAsString());
                                 trace.setAcceptStation(object.get("processName").getAsString());
+                                trace.setProcessor(object.get("processor").getAsString());
                                 traceList.add(trace);
                             }
 

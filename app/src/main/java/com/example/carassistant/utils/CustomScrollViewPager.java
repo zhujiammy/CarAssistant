@@ -32,6 +32,24 @@ public class CustomScrollViewPager extends ViewPager {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        int height = 0;
+        for (int i = 0; i < getChildCount(); i++) {
+            View child = getChildAt(i);
+            child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
+            int h = child.getMeasuredHeight();
+            if (h > height)
+                height = h;
+        }
+
+        heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
+
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+/*
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         if (mChildrenViews.size() > current) {
             View child = mChildrenViews.get(current);
             child.measure(widthMeasureSpec, MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED));
@@ -41,7 +59,7 @@ public class CustomScrollViewPager extends ViewPager {
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
+    }*/
 
     public void resetHeight(int current) {
         this.current = current;

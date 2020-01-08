@@ -50,6 +50,7 @@ public class TraceListAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_trace, parent, false);
             holder.tvAcceptTime = (TextView) convertView.findViewById(R.id.tvAcceptTime);
             holder.tvAcceptStation = (TextView) convertView.findViewById(R.id.tvAcceptStation);
+            holder.processor = (TextView) convertView.findViewById(R.id.processor);
             holder.tvTopLine = (TextView) convertView.findViewById(R.id.tvTopLine);
             holder.tvDot = (TextView) convertView.findViewById(R.id.tvDot);
             convertView.setTag(holder);
@@ -61,16 +62,21 @@ public class TraceListAdapter extends BaseAdapter {
             // 字体颜色加深
             holder.tvAcceptTime.setTextColor(0xff555555);
             holder.tvAcceptStation.setTextColor(0xff555555);
+            holder.processor.setTextColor(0xff555555);
             holder.tvDot.setBackgroundResource(R.drawable.timelline_dot_first);
         } else if (getItemViewType(position) == TYPE_NORMAL) {
             holder.tvTopLine.setVisibility(View.VISIBLE);
             holder.tvAcceptTime.setTextColor(0xff999999);
             holder.tvAcceptStation.setTextColor(0xff999999);
+            holder.processor.setTextColor(0xff999999);
             holder.tvDot.setBackgroundResource(R.drawable.timelline_dot_normal);
         }
 
+
         holder.tvAcceptTime.setText(trace.getAcceptTime());
         holder.tvAcceptStation.setText(trace.getAcceptStation());
+        holder.processor.setText("操作人:"+trace.getProcessor());
+
         return convertView;
     }
 
@@ -83,7 +89,7 @@ public class TraceListAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        public TextView tvAcceptTime, tvAcceptStation;
+        public TextView tvAcceptTime, tvAcceptStation,processor;
         public TextView tvTopLine, tvDot;
     }
 }

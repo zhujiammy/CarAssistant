@@ -118,6 +118,8 @@ public class TestVehicleDestroyeDetailActivity extends AppCompatActivity impleme
         testMainEnginePlantsNum.setText(getIntent().getStringExtra("testMainEnginePlantsNum"));
         testState.setText(getIntent().getStringExtra("testState"));
         testMainEnginePlants.setText(getIntent().getStringExtra("testMainEnginePlants"));
+        enterTime.setText(getIntent().getStringExtra("erterTime"));
+        carCode.setText(getIntent().getStringExtra("carCode"));
         tv1.setText("侧面");
         ok_btn.setOnClickListener(this);
         staging_btn.setOnClickListener(this);
@@ -158,6 +160,7 @@ public class TestVehicleDestroyeDetailActivity extends AppCompatActivity impleme
                             JsonObject data = jsonObject.get("data").getAsJsonObject();
                             JsonArray img = data.get("img").getAsJsonArray();
                             JsonArray destroyImg = data.get("destroyImg").getAsJsonArray();
+
                             if(img.size()!=0){
                                 if(!img.get(0).getAsJsonObject().get("attachUrl").getAsString().equals("")){
                                     Glide.with(getApplicationContext()).load(img.get(0).getAsJsonObject().get("attachUrl").getAsString()).into(iv_1);
@@ -169,6 +172,8 @@ public class TestVehicleDestroyeDetailActivity extends AppCompatActivity impleme
                                     Glide.with(getApplicationContext()).load(img.get(2).getAsJsonObject().get("attachUrl").getAsString()).into(iv_3);
                                 }
                             }
+
+
                             if(destroyImg.size() != 0){
                                 List<NineGridBean> resultList = new ArrayList<>();
                                 picAttachIds = new ArrayList<>();

@@ -72,8 +72,12 @@ public class FreeAdmissionActivity extends AppCompatActivity implements View.OnC
     private String testStatestr;//车状态
     @BindView(R.id.carType)
     EditText carType;//车型
+    @BindView(R.id.toolbar_title)
+    TextView toolbar_title;
     @BindView(R.id.testMainEnginePlantsNum)
     EditText testMainEnginePlantsNum;//主机厂编号
+    @BindView(R.id.testMainEnginePlants_sp)
+    Spinner testMainEnginePlants_sp;//主机厂
     @BindView(R.id.testState)
     Spinner testState;//车状态
     private ProgressDialog progressDialog;
@@ -81,6 +85,9 @@ public class FreeAdmissionActivity extends AppCompatActivity implements View.OnC
     Toolbar toolbar;
     List<AllData> dicts1= new ArrayList<AllData>();
     ArrayAdapter<AllData> arrAdapterpay1;
+    List<AllData> dicts2= new ArrayList<AllData>();
+    ArrayAdapter<AllData> arrAdapterpay2;
+    private String testMainEnginePlants;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -95,15 +102,20 @@ public class FreeAdmissionActivity extends AppCompatActivity implements View.OnC
         this.getSupportActionBar().setDisplayShowTitleEnabled(false);
         initEvent();
         TEST_CAR_STATE();
+        MAIN_ENGINE_PLANTS();
 
     }
     private void initEvent(){
         if(getIntent().getStringExtra("type").equals("2")){
             testMainEnginePlantsNum.setText(getIntent().getStringExtra("testMainEnginePlantsNum"));
             carType.setText(getIntent().getStringExtra("carType"));
+            toolbar_title.setText("车源入场");
+
         }
         takephoto.setOnClickListener(this);
         testState.setOnItemSelectedListener(listener1);
+        testMainEnginePlants_sp.setOnItemSelectedListener(listener2);
+
 
     }
 
@@ -147,6 +159,46 @@ public class FreeAdmissionActivity extends AppCompatActivity implements View.OnC
             }
         });
     }
+    private void MAIN_ENGINE_PLANTS(){
+        Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).MAIN_ENGINE_PLANTS(Utils.getShared2(getApplicationContext(),"token"));
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if(response.body()!=null){
+                    try {
+                        String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
+                        JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
+                        if(jsonObject.get("status").getAsInt() == 0){
+                            JsonArray jsonElements = jsonObject.getAsJsonArray("data");
+                            for(int i = 0;i<jsonElements.size();i++){
+                                dicts2.add(new AllData("",jsonElements.get(i).getAsString()));
+                                arrAdapterpay2 = new ArrayAdapter<AllData >(getApplicationContext(),R.layout.simple_spinner_item,dicts2);
+                                arrAdapterpay2.setDropDownViewResource(R.layout.simple_spinner_item);
+                                testMainEnginePlants_sp.setAdapter(arrAdapterpay2);
+                            }
+                            if(getIntent().getStringExtra("type").equals("2")) {
+                                for (int i = 0; i < arrAdapterpay2.getCount(); i++) {
+                                    if (getIntent().getStringExtra("testMainEnginePlants").equals(arrAdapterpay2.getItem(i).getText())) {
+                                        testMainEnginePlants_sp.setSelection(i, true);
+                                    }
+                                }
+
+                            }
+                        }else {
+                            Toast.makeText(getApplicationContext(),jsonObject.get("msg").getAsString(),Toast.LENGTH_LONG).show();
+                        }
+                    }catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -163,11 +215,7 @@ public class FreeAdmissionActivity extends AppCompatActivity implements View.OnC
 
             if(filePath==null){
                 Toast.makeText(getApplicationContext(),"车辆照片必须上传",Toast.LENGTH_SHORT).show();
-            }else if(TextUtils.isEmpty(carType.getText().toString())) {
-                Toast.makeText(getApplicationContext(),"车型不能为空!",Toast.LENGTH_SHORT).show();
-            }else if(TextUtils.isEmpty(testMainEnginePlantsNum.getText().toString())) {
-                Toast.makeText(getApplicationContext(),"主机厂编号不能为空!",Toast.LENGTH_SHORT).show();
-            } else if(TextUtils.isEmpty(testStatestr)){
+            }else if(TextUtils.isEmpty(testStatestr)){
                 Toast.makeText(getApplicationContext(),"车状态必须选择",Toast.LENGTH_SHORT).show();
             }else {
                 progressDialog = new ProgressDialog(FreeAdmissionActivity.this,
@@ -181,7 +229,7 @@ public class FreeAdmissionActivity extends AppCompatActivity implements View.OnC
                 RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"),file);
                 MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
                 if(getIntent().getStringExtra("type").equals("1")){
-                    Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).testcarentranceCar(Utils.getShared2(getApplicationContext(),"token"),testMainEnginePlantsNum.getText().toString(),testStatestr,carType.getText().toString(),part);
+                    Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).testcarentranceCar(Utils.getShared2(getApplicationContext(),"token"),testMainEnginePlants,testMainEnginePlantsNum.getText().toString(),testStatestr,carType.getText().toString(),part);
                     call.enqueue(new Callback<ResponseBody>(){
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response){
@@ -212,7 +260,7 @@ public class FreeAdmissionActivity extends AppCompatActivity implements View.OnC
                     });
                 }else {
                     Log.e("TAG", "onOptionsItemSelected: "+getIntent().getStringExtra("carDetailId") );
-                    Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).testcarentranceCar1(Utils.getShared2(getApplicationContext(),"token"),getIntent().getStringExtra("carDetailId"),testMainEnginePlantsNum.getText().toString(),testStatestr,carType.getText().toString(),part);
+                    Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).testcarentranceCar1(Utils.getShared2(getApplicationContext(),"token"),getIntent().getStringExtra("carDetailId"),testMainEnginePlants,testMainEnginePlantsNum.getText().toString(),testStatestr,carType.getText().toString(),part);
                     call.enqueue(new Callback<ResponseBody>(){
                         @Override
                         public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response){
@@ -299,6 +347,16 @@ public class FreeAdmissionActivity extends AppCompatActivity implements View.OnC
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             testStatestr = ((AllData)testState.getSelectedItem()).getText();
             Log.e("TAG", "onItemSelected: "+ testStatestr);
+        }
+        @Override
+        public void onNothingSelected(AdapterView<?> parent){
+        }
+    };
+
+    Spinner.OnItemSelectedListener listener2=new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            testMainEnginePlants = ((AllData)testMainEnginePlants_sp.getSelectedItem()).getText();
         }
         @Override
         public void onNothingSelected(AdapterView<?> parent){

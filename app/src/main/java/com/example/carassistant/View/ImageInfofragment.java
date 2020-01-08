@@ -72,10 +72,12 @@ public class ImageInfofragment extends Fragment {
                             JsonObject data = jsonObject.get("data").getAsJsonObject();
                             JsonArray pretreatmentPictureaar = data.get("pretreatmentPicture").getAsJsonArray();
                             JsonArray destructionPictureaar  = data.get("destructionPicture").getAsJsonArray();
+
                             if(pretreatmentPictureaar.size()!=0){
-                                View pretreatmentPictureaview = View.inflate(getActivity(),R.layout.img_data,null);
-                                ImageView attachUrlimg = (ImageView) pretreatmentPictureaview.findViewById(R.id.attachUrl);
+                                pretreatmentPicture.removeAllViews();
                                 for(int i = 0;i<pretreatmentPictureaar.size();i++){
+                                    View pretreatmentPictureaview = View.inflate(getActivity(),R.layout.img_data,null);
+                                    ImageView attachUrlimg = (ImageView) pretreatmentPictureaview.findViewById(R.id.attachUrl);
                                     JsonObject attachUrl = pretreatmentPictureaar.get(i).getAsJsonObject();
                                     Glide.with(getActivity()).load(attachUrl.get("attachUrl").getAsString()).into(attachUrlimg);
                                     pretreatmentPicture.addView(pretreatmentPictureaview);
@@ -83,9 +85,10 @@ public class ImageInfofragment extends Fragment {
                             }
 
                             if(destructionPictureaar.size()!=0){
-                                View destructionPictureview = View.inflate(getActivity(),R.layout.img_data,null);
-                                ImageView attachUrlimg = (ImageView) destructionPictureview.findViewById(R.id.attachUrl);
+                                destructionPicture.removeAllViews();
                                 for(int i = 0;i<destructionPictureaar.size();i++){
+                                    View destructionPictureview = View.inflate(getActivity(),R.layout.img_data,null);
+                                    ImageView attachUrlimg = (ImageView) destructionPictureview.findViewById(R.id.attachUrl);
                                     JsonObject attachUrl = destructionPictureaar.get(i).getAsJsonObject();
                                     Glide.with(getActivity()).load(attachUrl.get("attachUrl").getAsString()).into(attachUrlimg);
                                     destructionPicture.addView(destructionPictureview);

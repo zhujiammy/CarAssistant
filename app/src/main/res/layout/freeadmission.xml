@@ -119,6 +119,40 @@
     </LinearLayout>
     <TextView
         android:layout_below="@id/testMainEnginePlantsNum_lin"
+        android:id="@+id/text4"
+        android:text="主机厂"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"/>
+    <LinearLayout
+        android:id="@+id/testMainEnginePlantsNum_lin1"
+        android:layout_below="@id/text4"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:background="@drawable/edit"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/testMainEnginePlants_sp"
+                android:layout_margin="5dp"
+                android:background="@drawable/spinner_drop_down_shape"
+                android:layout_width="match_parent"
+                android:popupBackground="@color/white"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <TextView
+        android:layout_below="@id/testMainEnginePlantsNum_lin1"
         android:id="@+id/text3"
         android:text="状态"
         android:textColor="@color/black"

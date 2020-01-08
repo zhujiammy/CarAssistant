@@ -1,17 +1,20 @@
 package com.example.carassistant.Model;
 
 public class Trace {
-    /** 时间 */
+
     private String acceptTime;
-    /** 描述 */
+
     private String acceptStation;
+
+    private String processor;
 
     public Trace() {
     }
 
-    public Trace(String acceptTime, String acceptStation) {
+    public Trace(String acceptTime, String acceptStation,String processor) {
         this.acceptTime = acceptTime;
         this.acceptStation = acceptStation;
+        this.processor = processor;
     }
 
     public String getAcceptTime() {
@@ -28,5 +31,13 @@ public class Trace {
 
     public void setAcceptStation(String acceptStation) {
         this.acceptStation = acceptStation;
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
     }
 }

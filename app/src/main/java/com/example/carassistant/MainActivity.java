@@ -214,17 +214,22 @@ private void cartype(String result){
                     String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
                     JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
                     if(jsonObject.get("status").getAsInt() == 0){
-                        if(jsonObject.get("data").getAsInt() ==2){
-                            //解析社会车详情
-                            Intent intent = new Intent(MainActivity.this, SocialCarDetailsActivity.class);
-                            intent.putExtra("carDetailId",result);
-                            startActivity(intent);
+                        if(!jsonObject.get("data").isJsonNull()){
+                            if(jsonObject.get("data").getAsInt() ==2){
+                                //解析社会车详情
+                                Intent intent = new Intent(MainActivity.this, SocialCarDetailsActivity.class);
+                                intent.putExtra("carDetailId",result);
+                                startActivity(intent);
+                            }else {
+                                //解析试验车详情
+                                Intent intent = new Intent(MainActivity.this, TestCarDetailsActivity.class);
+                                intent.putExtra("carDetailId",result);
+                                startActivity(intent);
+                            }
                         }else {
-                            //解析试验车详情
-                            Intent intent = new Intent(MainActivity.this, TestCarDetailsActivity.class);
-                            intent.putExtra("carDetailId",result);
-                            startActivity(intent);
+                            Toast.makeText(getApplicationContext(),"查不到当前车辆",Toast.LENGTH_SHORT).show();
                         }
+
 
                     }else {
                         Toast.makeText(MainActivity.this,jsonObject.get("msg").getAsString(),Toast.LENGTH_LONG).show();

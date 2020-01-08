@@ -555,7 +555,8 @@ public interface CarAssistantAPI {
     @POST("/entrance/testcar/entranceCar")
     Call<ResponseBody>testcarentranceCar(
             @Header("token") String token,
-            @Query("testMainEnginePlantsNum") String testMainEnginePlantsNum ,//主机厂编号
+            @Query("testMainEnginePlants") String testMainEnginePlants,//主机厂
+            @Query("testMainEnginePlantsNum") String testMainEnginePlantsNum,//主机厂编号
             @Query("testState") String testState,//车状态
             @Query("carType") String carType,//车型
             @Part MultipartBody.Part userHeadFile
@@ -566,6 +567,7 @@ public interface CarAssistantAPI {
     Call<ResponseBody>testcarentranceCar1(
             @Header("token") String token,
             @Query("carDetailId") String carDetailId,
+            @Query("testMainEnginePlants") String testMainEnginePlants,//主机厂
             @Query("testMainEnginePlantsNum") String testMainEnginePlantsNum ,//主机厂编号
             @Query("testState") String testState,//车状态
             @Query("carType") String carType,//车型
@@ -621,6 +623,13 @@ public interface CarAssistantAPI {
             @Query("oldPassword") String oldPassword,//旧密码
             @Query("newPassword") String newPassword//新密码
     );
+
+    //主机厂
+    @GET("/dictionary/dictionaryValue/MAIN_ENGINE_PLANTS")
+    Call<ResponseBody>MAIN_ENGINE_PLANTS(
+            @Header("token") String token
+    );
+
 
 
 

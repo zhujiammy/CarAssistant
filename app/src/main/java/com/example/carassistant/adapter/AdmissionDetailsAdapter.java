@@ -61,6 +61,12 @@ public class AdmissionDetailsAdapter extends RecyclerView.Adapter implements Vie
             }else {
                 ((BodyViewHolder) viewHolder).testMainEnginePlantsNum.setText("无");
             }
+            if(!object.get("testMainEnginePlants").isJsonNull()){
+                ((BodyViewHolder) viewHolder).testMainEnginePlants.setText(object.get("testMainEnginePlants").getAsString());
+            }else {
+                ((BodyViewHolder) viewHolder).testMainEnginePlants.setText("无");
+            }
+
             if(!object.get("testState").isJsonNull()){
                 ((BodyViewHolder) viewHolder).testState.setText(object.get("testState").getAsString());
             }
@@ -137,6 +143,7 @@ public class AdmissionDetailsAdapter extends RecyclerView.Adapter implements Vie
         private TextView testState;
         private TextView carType;
         private TextView remark;
+        private TextView testMainEnginePlants;
 
 
         public BodyViewHolder(View itemView) {
@@ -145,6 +152,7 @@ public class AdmissionDetailsAdapter extends RecyclerView.Adapter implements Vie
             testState = (TextView) itemView.findViewById(R.id.testState);
             carType = (TextView) itemView.findViewById(R.id.carType);
             remark = (TextView) itemView.findViewById(R.id.remark);
+            testMainEnginePlants = (TextView) itemView.findViewById(R.id.testMainEnginePlants);
 
         }
 
