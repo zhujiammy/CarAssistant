@@ -54,7 +54,7 @@ public class LoginPresenter implements LoginInterface.Presenter{
                             Utils.setShare2(context,"token",dataobject.get("token").getAsString());
                             Log.e("TAG", "onResponse: "+jsonStr );
                             Utils.setShare2(context,"userName",dataobject.get("userName").getAsString());
-                            Utils.setShare2(context,"userId",dataobject.get("userId").getAsString());
+                            //Utils.setShare2(context,"userId",dataobject.get("userId").getAsString());
                             Utils.setShare2(context,"flag","1");
 
                             view.succeed();

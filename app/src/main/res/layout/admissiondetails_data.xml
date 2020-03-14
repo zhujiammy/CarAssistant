@@ -65,6 +65,31 @@
         <TextView
             android:textSize="15sp"
             android:textColor="@color/grey_700"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="车架号:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/carVin"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="状态:"

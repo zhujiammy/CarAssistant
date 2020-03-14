@@ -87,6 +87,13 @@ public class AdmissionDetailsAdapter extends RecyclerView.Adapter implements Vie
                 ((BodyViewHolder) viewHolder).remark.setText("无");
             }
 
+            if(!object.get("carVin").isJsonNull()){
+                ((BodyViewHolder) viewHolder).carVin.setText(object.get("carVin").getAsString());
+            }
+            else {
+                ((BodyViewHolder) viewHolder).carVin.setText("无");
+            }
+
 
         }
         viewHolder.itemView.setTag(i);
@@ -144,6 +151,7 @@ public class AdmissionDetailsAdapter extends RecyclerView.Adapter implements Vie
         private TextView carType;
         private TextView remark;
         private TextView testMainEnginePlants;
+        private TextView carVin;
 
 
         public BodyViewHolder(View itemView) {
@@ -153,6 +161,7 @@ public class AdmissionDetailsAdapter extends RecyclerView.Adapter implements Vie
             carType = (TextView) itemView.findViewById(R.id.carType);
             remark = (TextView) itemView.findViewById(R.id.remark);
             testMainEnginePlants = (TextView) itemView.findViewById(R.id.testMainEnginePlants);
+            carVin = (TextView)itemView.findViewById(R.id.carVin);
 
         }
 

@@ -52,8 +52,8 @@ public class MyTask extends Fragment {
     JsonArray jsonElements;
     JsonArray jsonElements1;
     //icon封装数组
-    private int [] icon = new int[7];
-    private String[] iconName = new String[7];
+    private int [] icon = new int[8];
+    private String[] iconName = new String[8];
 
     @Nullable
     @Override
@@ -107,6 +107,10 @@ public class MyTask extends Fragment {
                         intent = new Intent(getActivity(),VehicleWeigActivity.class);
                         startActivity(intent);
                     }
+                if(iconName[position].equals("生产审批")){
+                    intent = new Intent(getActivity(),ProductionApprovalAty.class);
+                    startActivity(intent);
+                }
                 }
 
 
@@ -151,6 +155,9 @@ public class MyTask extends Fragment {
                                         }
                                         if(childrenname.get(j).getAsJsonObject().get("name").getAsString().equals("车辆过磅")){
                                             icon[j] = R.mipmap.weighing;
+                                        }
+                                        if(childrenname.get(j).getAsJsonObject().get("name").getAsString().equals("生产审批")){
+                                            icon[j] = R.mipmap.shenhe;
                                         }
                                     }
                                 }

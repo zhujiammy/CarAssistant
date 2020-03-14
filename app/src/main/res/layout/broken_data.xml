@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/serach"
+    android:layout_margin="10dp"
+    android:padding="4dp"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="250dp">
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <CheckBox
+            android:visibility="gone"
+            android:id="@+id/checkbox"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </CheckBox>
+
+    </LinearLayout>
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:id="@+id/line_group"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/line_et"
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:id="@+id/carDetailId"
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="破碎单号:"
+                />
+            <TextView
+                android:padding="3dp"
+                android:textSize="15sp"
+                android:id="@+id/crushListCode"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="配件状态:"
+                />
+            <TextView
+                android:textSize="15sp"
+                android:id="@+id/state"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/line4"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:textSize="15sp"
+                    android:textColor="@color/grey_700"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="配件名称:"
+                    />
+                <TextView
+                    android:textSize="15sp"
+                    android:id="@+id/partName"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2323"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+                    android:textSize="15sp"
+                    android:textColor="@color/grey_700"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="创建时间:"
+                    />
+                <TextView
+                    android:textSize="15sp"
+                    android:id="@+id/createDate"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2323"
+                    />
+
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="创建人:"
+                />
+            <TextView
+                android:textSize="12sp"
+                android:id="@+id/createPerson"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2323"
+                />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="审批意见:"
+                />
+            <Button
+                android:id="@+id/Agree_btn"
+                android:layout_marginLeft="20dp"
+                android:textSize="13sp"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimary"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="同意"
+                />
+            <Button
+                android:id="@+id/refuse_btn"
+                android:layout_marginLeft="20dp"
+                android:textSize="13sp"
+                android:textColor="@color/white"
+                android:background="@color/red"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:text="拒绝"
+                />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

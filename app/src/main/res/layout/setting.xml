@@ -44,6 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/change_pass_lin"
                 android:layout_width="match_parent"
                 android:layout_height="60dp">

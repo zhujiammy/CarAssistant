@@ -143,6 +143,8 @@
         <activity android:name=".View.ProductionApprovalActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
         <activity android:name=".View.TestDisassembleDetailActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
         <activity android:name=".View.ChangePassActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
+        <activity android:name=".View.ProductionApprovalAty" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
+        <activity android:name=".View.DismantlingDetailActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
 
 
 

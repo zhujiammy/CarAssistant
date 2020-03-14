@@ -12,6 +12,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface CarAssistantAPI {
@@ -600,12 +601,52 @@ public interface CarAssistantAPI {
             @Header("token") String token,
             @Query("condition") String condition  //车牌/车型/车辆编号
     );
+
     //生产审批通过
     @POST("/productionApprove/")
     Call<ResponseBody>productionApprovea(
             @Header("token") String token,
             @Query("carDetailIds") String[] carDetailIds  //车源明细id数组
     );
+
+    //拆解单审批查询
+    @GET("/dismantleManager/approval/list")
+    Call<ResponseBody>approvallist(
+            @Query("pageNum") String pageNum,
+            @Query("pageSize") String pageSize,
+            @Query("state") String state,//审批状态
+            @Query("disType") String disType,//拆解类型
+            @Query("docCode") String docCode  //拆解单号
+    );
+    //拆解单详情
+    @GET("/dismantleManager/approval/detail/{disListId}")
+    Call<ResponseBody>approvaldetail(
+        @Path("disListId") String disListId
+    );
+
+    //拆解单审批通过
+    @POST("/dismantleManager/approval")
+    Call<ResponseBody>approval(
+            @Header("token") String token,
+            @Body RequestBody Body
+    );
+
+    //破碎单审批查询
+    @GET("/crushManager/approval/list")
+    Call<ResponseBody>crushManagerapprovallist(
+            @Query("pageNum") String pageNum,
+            @Query("pageSize") String pageSize,
+            @Query("state") String state,//审批状态
+            @Query("docCode") String docCode  //破碎单号
+    );
+
+    //破碎单审批通过
+    @POST("/crushManager/approval")
+    Call<ResponseBody>crushManagerapproval(
+            @Header("token") String token,
+            @Body RequestBody Body
+    );
+
 
     //扫一扫车辆信息
     @GET("/carDetail/testCarInfo")

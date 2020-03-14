@@ -6,7 +6,21 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_weight="5"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </CheckBox>
+
+    </LinearLayout>
     <LinearLayout
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -15,11 +29,11 @@
         <TextView
             android:textSize="15sp"
             android:textColor="@color/grey_700"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="车品牌:"
             />
+
         <TextView
             android:padding="3dp"
             android:textSize="15sp"
@@ -84,9 +98,8 @@
                 android:layout_height="wrap_content"
                 android:text="2323"
                 />
-
-
         </LinearLayout>
+
         <LinearLayout
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -95,11 +108,11 @@
             <TextView
                 android:textSize="15sp"
                 android:textColor="@color/grey_700"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="主机厂编号:"
                 />
+
             <TextView
                 android:textSize="15sp"
                 android:id="@+id/testMainEnginePlantsNum"
@@ -108,9 +121,8 @@
                 android:layout_height="wrap_content"
                 android:text="2323"
                 />
-
-
         </LinearLayout>
+
         <LinearLayout
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -119,11 +131,11 @@
             <TextView
                 android:textSize="15sp"
                 android:textColor="@color/grey_700"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="试验车状态:"
                 />
+
             <TextView
                 android:textSize="15sp"
                 android:id="@+id/testState"
@@ -140,14 +152,15 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="40dp">
+
             <TextView
                 android:textSize="15sp"
                 android:textColor="@color/grey_700"
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="主机厂:"
                 />
+
             <TextView
                 android:textSize="15sp"
                 android:id="@+id/testMainEnginePlants"
@@ -159,10 +172,10 @@
 
 
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
-
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -170,7 +183,6 @@
         <TextView
             android:textSize="15sp"
             android:textColor="@color/grey_700"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="入场时间:"
@@ -196,7 +208,6 @@
         <TextView
             android:textSize="15sp"
             android:textColor="@color/grey_700"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="车牌号:"
