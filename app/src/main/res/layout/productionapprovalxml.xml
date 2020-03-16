@@ -99,6 +99,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"/>
 
+                <RadioButton
+                    android:id="@+id/xiaoshou"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/rd_selector"
+                    android:gravity="center"
+                    android:text="销售配件"
+                    android:textColor="@drawable/rd_text_slelct"
+                    android:button="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+                <RadioButton
+                    android:id="@+id/tuiku"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/rd_selector"
+                    android:gravity="center"
+                    android:text="配件退库"
+                    android:textColor="@drawable/rd_text_slelct"
+                    android:button="@null"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"/>
+
             </RadioGroup>
 
 

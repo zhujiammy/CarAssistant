@@ -145,6 +145,8 @@
         <activity android:name=".View.ChangePassActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
         <activity android:name=".View.ProductionApprovalAty" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
         <activity android:name=".View.DismantlingDetailActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
+        <activity android:name=".View.SalesOrderDetailsActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
+        <activity android:name=".View.PartsWithdrawalActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
 
 
 

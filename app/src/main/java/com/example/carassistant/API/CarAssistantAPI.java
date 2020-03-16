@@ -646,6 +646,50 @@ public interface CarAssistantAPI {
             @Header("token") String token,
             @Body RequestBody Body
     );
+    //销售单审批查询
+    @GET("/sale/approval/list")
+    Call<ResponseBody>saleapprovallist(
+            @Query("pageNum") String pageNum,
+            @Query("pageSize") String pageSize,
+            @Query("state") String state,//审批状态
+            @Query("docCode") String docCode  //销售单号
+    );
+
+    //销售单详情
+    @GET("/sale/approval/detail/{saleListId}")
+    Call<ResponseBody>saledetail(
+            @Path("saleListId") String saleListId
+    );
+
+    //销售单审批通过
+    @POST("/sale/approval")
+    Call<ResponseBody>saleapproval(
+            @Header("token") String token,
+            @Body RequestBody Body
+    );
+
+    //退货单审批查询
+    @GET("/returnManager/approval/list")
+    Call<ResponseBody>returnManagerallist(
+            @Query("pageNum") String pageNum,
+            @Query("pageSize") String pageSize,
+            @Query("state") String state,//审批状态
+            @Query("docCode") String docCode  //退货单号
+    );
+
+    //退货单审批通过
+    @POST("/returnManager/approval")
+    Call<ResponseBody>returnManagerapproval(
+            @Header("token") String token,
+            @Body RequestBody Body
+    );
+    //退货单详情
+    @GET("/returnManager/approval/detail/{saleListId}")
+    Call<ResponseBody>returnManagerdetail(
+            @Path("saleListId") String saleListId
+    );
+
+
 
 
     //扫一扫车辆信息

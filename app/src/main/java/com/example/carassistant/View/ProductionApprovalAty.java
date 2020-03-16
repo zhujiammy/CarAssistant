@@ -40,15 +40,19 @@ import com.example.carassistant.Interface.SProductionApprovalInterface;
 import com.example.carassistant.Interface.VehicleWeigInterface;
 import com.example.carassistant.Interface.VehiclesNumberInterface;
 import com.example.carassistant.Presenter.BrokenPresenter;
+import com.example.carassistant.Presenter.PartsWithdrawalPresenter;
 import com.example.carassistant.Presenter.ProductionApprovalPre;
 import com.example.carassistant.Presenter.ProductionApprovalPresenter;
 import com.example.carassistant.Presenter.RetrieveVehiclePresenter;
+import com.example.carassistant.Presenter.SalesSlipPresenter;
 import com.example.carassistant.Presenter.TestVehicleWeigPresenter;
 import com.example.carassistant.Presenter.VehicleWeigPresenter;
 import com.example.carassistant.Presenter.VehiclesNumberPresenter;
 import com.example.carassistant.R;
 import com.example.carassistant.adapter.BrokenListAdapter;
+import com.example.carassistant.adapter.PartsWithdrawalAdapter;
 import com.example.carassistant.adapter.ProductionApprovalPreAdapter;
+import com.example.carassistant.adapter.SalesSlipAdapter;
 import com.example.carassistant.adapter.VehicleWeigAdapter;
 import com.example.carassistant.adapter.VehiclesNumberAdapter;
 import com.example.carassistant.adapter.productionApproveAdapter;
@@ -89,6 +93,8 @@ public class ProductionApprovalAty extends AppCompatActivity implements SProduct
     private LinearLayoutManager mLinearLayoutManager;
     private ProductionApprovalPreAdapter adapter;
     private BrokenListAdapter brokenListAdapter;
+    private SalesSlipAdapter salesSlipAdapter;
+    private PartsWithdrawalAdapter partsWithdrawalAdapter;
     private static  int REQUEST_CODE = 1001;
 
     @BindView(R.id.Type_lin)
@@ -99,9 +105,15 @@ public class ProductionApprovalAty extends AppCompatActivity implements SProduct
     RadioButton chaijie;//拆解单
     @BindView(R.id.posui)
     RadioButton posui;//破碎配件
+    @BindView(R.id.xiaoshou)
+    RadioButton xiaoshou;//销售配件
+    @BindView(R.id.tuiku)
+    RadioButton tuiku;//配件退库
 
     private ProductionApprovalPre presenter;
     private BrokenPresenter brokenPresenter;
+    private SalesSlipPresenter salesSlipPresenter;
+    private PartsWithdrawalPresenter partsWithdrawalPresenter;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     String disType;//拆解类型
@@ -160,6 +172,8 @@ public class ProductionApprovalAty extends AppCompatActivity implements SProduct
         serach_btn.addTextChangedListener(watcher);
         chaijie.setOnClickListener(this);
         posui.setOnClickListener(this);
+        xiaoshou.setOnClickListener(this);
+        tuiku.setOnClickListener(this);
     }
 
     //搜索
@@ -199,11 +213,23 @@ public class ProductionApprovalAty extends AppCompatActivity implements SProduct
             presenter.approvallist("1","100","2",disType,null);
         }
         if(v ==posui){
-            //拆解
             type = 2;
             Type_lin.setVisibility(View.GONE);
             brokenPresenter = new BrokenPresenter(this,ProductionApprovalAty.this,recyclerView,brokenListAdapter);
             brokenPresenter.crushManagerapprovallist("1","100","2",null);
+        }
+        if(v == xiaoshou){
+            type = 3;
+            Type_lin.setVisibility(View.GONE);
+            salesSlipPresenter = new SalesSlipPresenter(this,ProductionApprovalAty.this,recyclerView,salesSlipAdapter);
+            salesSlipPresenter.saleapprovallist("1","100","2",null);
+        }
+        if(v == tuiku){
+            type = 4;
+            Type_lin.setVisibility(View.GONE);
+            partsWithdrawalPresenter = new PartsWithdrawalPresenter(this,ProductionApprovalAty.this,recyclerView,partsWithdrawalAdapter);
+            partsWithdrawalPresenter.returnManagerallist("1","100","2",null);
+
         }
     }
 
@@ -314,6 +340,38 @@ public class ProductionApprovalAty extends AppCompatActivity implements SProduct
                                         Toast.makeText(getApplicationContext(),"提交成功",Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
                                         brokenPresenter.crushManagerapprovallist("1","100","2",null);
+
+                                    }else {
+                                        Toast.makeText(getApplicationContext(),jsonObject.get("msg").getAsString(),Toast.LENGTH_SHORT).show();
+                                        progressDialog.dismiss();
+                                    }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                    });
+                }
+                else if(type == 4){
+                    Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).returnManagerapproval(Utils.getShared2(getApplicationContext(),"token"),body);
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if(response.body()!=null){
+                                try {
+                                    String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
+                                    JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
+                                    if(jsonObject.get("status").getAsInt() == 0){
+                                        Toast.makeText(getApplicationContext(),"提交成功",Toast.LENGTH_SHORT).show();
+                                        progressDialog.dismiss();
+                                        partsWithdrawalPresenter.returnManagerallist("1","100","2",null);
 
                                     }else {
                                         Toast.makeText(getApplicationContext(),jsonObject.get("msg").getAsString(),Toast.LENGTH_SHORT).show();

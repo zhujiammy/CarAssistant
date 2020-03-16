@@ -28,10 +28,12 @@ import com.example.carassistant.View.ExtensionDetailsActivity;
 import com.example.carassistant.View.OptionsDetailsActivity;
 import com.example.carassistant.View.ProductionApprovalActivity;
 import com.example.carassistant.View.ProductionApprovalAty;
+import com.example.carassistant.View.SalesOrderDetailsActivity;
 import com.example.carassistant.View.VehicleWeighingActivity;
 import com.example.carassistant.adapter.BrokenListAdapter;
 import com.example.carassistant.adapter.ProductionApprovalPreAdapter;
 import com.example.carassistant.adapter.RetrieveVehicleAdapter;
+import com.example.carassistant.adapter.SalesSlipAdapter;
 import com.example.carassistant.adapter.VehicleWeigAdapter;
 import com.example.carassistant.adapter.VehiclesNumberAdapter;
 import com.example.carassistant.adapter.productionApproveAdapter;
@@ -50,13 +52,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BrokenPresenter implements SProductionApprovalInterface.Presenter {
+public class SalesSlipPresenter implements SProductionApprovalInterface.Presenter {
     public SProductionApprovalInterface.View view;
     public ProductionApprovalAty context;
     JsonArray jsonElements;
-    private BrokenListAdapter adapter;
+    private SalesSlipAdapter adapter;
     RecyclerViewEmptySupport recyclerView;
-    public BrokenPresenter(SProductionApprovalInterface.View view,ProductionApprovalAty context,RecyclerViewEmptySupport recyclerView,BrokenListAdapter adapter){
+    public SalesSlipPresenter(SProductionApprovalInterface.View view,ProductionApprovalAty context,RecyclerViewEmptySupport recyclerView,SalesSlipAdapter adapter){
         this.view = view;
         this.context =context;
         this.adapter = adapter;
@@ -72,7 +74,12 @@ public class BrokenPresenter implements SProductionApprovalInterface.Presenter {
 
     @Override
     public void crushManagerapprovallist(String pageNum, String pageSize, String state, String docCode) {
-        Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).crushManagerapprovallist("1","100","2",docCode);
+
+    }
+
+    @Override
+    public void saleapprovallist(String pageNum, String pageSize, String state, String docCode) {
+        Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).saleapprovallist("1","100","2",docCode);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -84,7 +91,16 @@ public class BrokenPresenter implements SProductionApprovalInterface.Presenter {
                         if(jsonObject.get("status").getAsInt() == 0){
                             JsonObject object = jsonObject.getAsJsonObject("data").getAsJsonObject();
                             jsonElements = object.getAsJsonArray("list");
-                            adapter = new BrokenListAdapter(context,jsonElements,2);
+                            adapter = new SalesSlipAdapter(context,jsonElements,2);
+                            adapter.setOnitemClickListener(new SalesSlipAdapter.OnitemClickListener() {
+                                @Override
+                                public void onItemClick(View view, int position) {
+                                    JsonObject object =jsonElements.get(position).getAsJsonObject();
+                                    Intent intent = new Intent(context, SalesOrderDetailsActivity.class);
+                                    intent.putExtra("saleListId",object.get("saleListId").getAsString());
+                                    context.startActivity(intent);
+                                }
+                            });
                             recyclerView.setAdapter(adapter);
                             view.onRefresh();
 
@@ -105,11 +121,6 @@ public class BrokenPresenter implements SProductionApprovalInterface.Presenter {
                 Log.e("TAG", "onResponse: "+"连接超时，请检查网络环境，避免影响使用！" );
             }
         });
-    }
-
-    @Override
-    public void saleapprovallist(String pageNum, String pageSize, String state, String docCode) {
-
     }
 
     @Override

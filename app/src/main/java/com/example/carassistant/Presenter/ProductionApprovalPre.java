@@ -116,5 +116,15 @@ public class ProductionApprovalPre implements SProductionApprovalInterface.Prese
 
     }
 
+    @Override
+    public void saleapprovallist(String pageNum, String pageSize, String state, String docCode) {
+
+    }
+
+    @Override
+    public void returnManagerallist(String pageNum, String pageSize, String state, String docCode) {
+
+    }
+
 
 }
