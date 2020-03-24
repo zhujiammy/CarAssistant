@@ -39,4 +39,11 @@
         <item>拆解车</item>
         <item>拆配件</item>
     </string-array>
+
+    <string-array name="status">
+        <item>待确认</item>
+        <item>完好</item>
+        <item>毁坏</item>
+        <item>无此配件</item>
+    </string-array>
 </resources>

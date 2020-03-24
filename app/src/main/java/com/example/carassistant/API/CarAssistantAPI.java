@@ -715,6 +715,80 @@ public interface CarAssistantAPI {
             @Header("token") String token
     );
 
+    //拆解车/配件
+    @GET("/dismantle/showDismantleCarAndPartInfo")
+    Call<ResponseBody>showDismantleCarAndPartInfo(
+            @Header("token") String token,
+            @Query("disType") String disType, //拆解类型
+            @Query("listCode") String listCode//拆解单号
+    );
+
+    //确定拆解
+    @GET("/dismantle/showDismantleDetail")
+    Call<ResponseBody>showDismantleDetail(
+            @Query("disListId") String disListId, //拆解类型
+            @Query("defStatus") String defStatus//拆解单号
+    );
+
+    //成色/材质
+    @GET("/inventoryManager/showQualityAndTexture")
+    Call<ResponseBody>showQualityAndTexture(
+    );
+
+    //颜色
+    @GET("/inventoryManager/showColor")
+    Call<ResponseBody>showColor(
+    );
+
+    //拆解完成
+
+    @GET("/dismantle/partAndCarComplete")
+    Call<ResponseBody>partAndCarComplete(
+            @Query("disListId") String disListId
+    );
+
+    //配件和车拆解的完成和修改
+    @Multipart
+    @POST("/dismantle/dismantleComplete")
+    Call<ResponseBody>dismantleComplete(
+            @Header("token") String token,
+            @Query("disDetailsId") String disDetailsId,
+            @Query("partRepertoryId") String partRepertoryId,
+            @Query("partName") String partName,
+            @Query("picUrl") String picUrl,
+            @Query("remark") String remark,
+            @Query("color") String color,
+            @Query("quality") String quality,
+            @Query("texture") String texture,
+            @Query("weight") String weight,
+            @Query("disRemark") String disRemark,
+            @Query("status") String status,
+            @Part MultipartBody.Part file
+
+    );
+
+    //拆解破碎查询
+    @GET("/waitCrush/listWaitCrush")
+    Call<ResponseBody>listWaitCrush(
+            @Query("crushListCode") String crushListCode
+    );
+
+
+    @Multipart
+    @POST("/waitCrush/doCrush")
+    Call<ResponseBody>doCrush(
+            @Header("token") String token,
+            @Query("crushListId") String crushListId,  //id
+            @Part MultipartBody.Part[]  beforeDestroyPics,
+            @Part MultipartBody.Part[]  destroyingPics,
+            @Part MultipartBody.Part[]  afterDestroyPics
+    );
+
+
+
+
+
+
 
 
 

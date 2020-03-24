@@ -147,8 +147,10 @@
         <activity android:name=".View.DismantlingDetailActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
         <activity android:name=".View.SalesOrderDetailsActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
         <activity android:name=".View.PartsWithdrawalActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
-
-
+        <activity android:name=".View.VehicleDismantledActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
+        <activity android:name=".View.DefiniteDismantlingActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
+        <activity android:name=".View.FractureActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
+        <activity android:name=".View.CrushingCompletedActivity" android:theme="@style/AppTheme.NoActionBar" android:screenOrientation="portrait"/>
 
         <provider
             android:name=".utils.FileProvider"

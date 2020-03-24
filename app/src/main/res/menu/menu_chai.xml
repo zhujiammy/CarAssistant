@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/sumbit"
+        app:showAsAction="ifRoom"
+        android:title="拆解完成"
+        tools:ignore="HardcodedText" />
+</menu>

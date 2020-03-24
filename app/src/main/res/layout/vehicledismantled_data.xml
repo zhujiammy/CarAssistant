@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/serach"
+    android:layout_margin="10dp"
+    android:padding="4dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_weight="5"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </CheckBox>
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="单号:"
+            />
+
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/listCode"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="备注:"
+            />
+        <TextView
+            android:textSize="15sp"
+            android:id="@+id/remark"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/line4"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:visibility="gone"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车架号:"
+                />
+            <TextView
+                android:textSize="15sp"
+                android:id="@+id/carVin"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2323"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主机厂编号:"
+                />
+
+            <TextView
+                android:textSize="15sp"
+                android:id="@+id/testMainEnginePlantsNum"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2323"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="试验车状态:"
+                />
+
+            <TextView
+                android:textSize="15sp"
+                android:id="@+id/testState"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2323"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:textSize="15sp"
+                android:textColor="@color/grey_700"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="主机厂:"
+                />
+
+            <TextView
+                android:textSize="15sp"
+                android:id="@+id/testMainEnginePlants"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2323"
+                />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建人:"
+            />
+        <TextView
+            android:textSize="15sp"
+            android:id="@+id/createPerson"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2323"
+            />
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/plateNumberNo_lin"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="创建时间:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/createDate"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/partName_lin"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="配件名称:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/partName"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/partCode_lin"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="配件编码:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/partCode"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="车源:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/carSource"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="车型:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/carType"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="车辆编号:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/carCode"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@color/grey_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="拆完入库/毁型:"
+            />
+        <TextView
+            android:padding="3dp"
+            android:textSize="15sp"
+            android:id="@+id/isDestroy"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="京A32323"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

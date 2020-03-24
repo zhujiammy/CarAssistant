@@ -52,8 +52,8 @@ public class MyTask extends Fragment {
     JsonArray jsonElements;
     JsonArray jsonElements1;
     //icon封装数组
-    private int [] icon = new int[8];
-    private String[] iconName = new String[8];
+    private int [] icon = new int[11];
+    private String[] iconName = new String[11];
 
     @Nullable
     @Override
@@ -111,6 +111,23 @@ public class MyTask extends Fragment {
                     intent = new Intent(getActivity(),ProductionApprovalAty.class);
                     startActivity(intent);
                 }
+
+                if(iconName[position].equals("待拆解车")){
+                    intent = new Intent(getActivity(),VehicleDismantledActivity.class);
+                    intent.putExtra("disType","0");
+                    startActivity(intent);
+                }
+                if(iconName[position].equals("待拆解配件")){
+                    intent = new Intent(getActivity(),VehicleDismantledActivity.class);
+                    intent.putExtra("disType","1");
+                    startActivity(intent);
+                }
+                if(iconName[position].equals("待拆解破碎")){
+                    intent = new Intent(getActivity(),FractureActivity.class);
+                    startActivity(intent);
+                }
+
+
                 }
 
 
@@ -158,6 +175,15 @@ public class MyTask extends Fragment {
                                         }
                                         if(childrenname.get(j).getAsJsonObject().get("name").getAsString().equals("生产审批")){
                                             icon[j] = R.mipmap.shenhe;
+                                        }
+                                        if(childrenname.get(j).getAsJsonObject().get("name").getAsString().equals("待拆解车")){
+                                            icon[j] = R.mipmap.chaijieche;
+                                        }
+                                        if(childrenname.get(j).getAsJsonObject().get("name").getAsString().equals("待拆解配件")){
+                                            icon[j] = R.mipmap.chaijiepeijan;
+                                        }
+                                        if(childrenname.get(j).getAsJsonObject().get("name").getAsString().equals("待拆解破碎")){
+                                            icon[j] = R.mipmap.chaijieposui;
                                         }
                                     }
                                 }
