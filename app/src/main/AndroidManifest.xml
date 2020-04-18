@@ -24,10 +24,13 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
 
     <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE">
+
+    </uses-permission>
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
 
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>

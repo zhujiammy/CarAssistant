@@ -68,7 +68,7 @@ public class VehicleWeighingActivity extends AppCompatActivity implements View.O
     EditText weightOdd;//过磅单号
     private TakePhoto takePhoto;
     public InvokeParam invokeParam;
-    private String filePath;
+    private String filePath = null;
     private String imgpath;
     private ProgressDialog progressDialog;
     @BindView(R.id.toolbar)
@@ -119,10 +119,11 @@ public class VehicleWeighingActivity extends AppCompatActivity implements View.O
                     try {
                         String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
                         JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
+                        Log.e("TAG", "onResponse: "+jsonStr );
                         if(jsonObject.get("status").getAsInt() == 0){
                             if(!jsonObject.get("data").getAsJsonObject().get("attachUrl").getAsString().equals("")){
                                 Glide.with(getApplicationContext()).load(jsonObject.get("data").getAsJsonObject().get("attachUrl").getAsString()).into(takephoto);
-                                imgpath = jsonObject.get("data").getAsJsonObject().get("attachUrl").getAsString();
+                                filePath = jsonObject.get("data").getAsJsonObject().get("attachUrl").getAsString();
                             }else {
                                 takephoto.setImageDrawable(getResources().getDrawable(R.drawable.plate));
                             }
@@ -132,6 +133,13 @@ public class VehicleWeighingActivity extends AppCompatActivity implements View.O
                             }else {
                                 weight.setText("");
                             }
+                            if(!jsonObject.get("data").getAsJsonObject().get("weightOdd").getAsString().equals("")){
+                                weightOdd.setText(jsonObject.get("data").getAsJsonObject().get("weightOdd").getAsString());
+                            }else {
+                                weightOdd.setText("");
+                            }
+
+
 
                         }else {
                             Toast.makeText(getApplicationContext(),jsonObject.get("msg").getAsString(),Toast.LENGTH_SHORT).show();
@@ -206,7 +214,11 @@ public class VehicleWeighingActivity extends AppCompatActivity implements View.O
     }
 
     private void printNoCars(int type){
-        if(imgpath != null){
+        if(TextUtils.isEmpty(weightOdd.getText().toString())){
+            Toast.makeText(getApplicationContext(),"过磅单号不能为空",Toast.LENGTH_SHORT).show();
+        }else if(TextUtils.isEmpty(weight.getText().toString())){
+            Toast.makeText(getApplicationContext(),"车重不能为空",Toast.LENGTH_SHORT).show();
+        } else if(filePath != null){
             progressDialog = new ProgressDialog(VehicleWeighingActivity.this,
                     R.style.AppTheme_Dark_Dialog);
                  progressDialog.setIndeterminate(true);
@@ -280,9 +292,11 @@ public class VehicleWeighingActivity extends AppCompatActivity implements View.O
                     }
                 });
             }
+        }else {
+            Toast.makeText(getApplicationContext(),"磅单照片必须上传",Toast.LENGTH_SHORT).show();
         }
         if(filePath==null){
-            Toast.makeText(getApplicationContext(),"磅单那照片必须上传",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"磅单照片必须上传",Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(weightOdd.getText().toString())){
             Toast.makeText(getApplicationContext(),"请输入过磅单号",Toast.LENGTH_SHORT).show();
         }else if(TextUtils.isEmpty(weight.getText().toString())){

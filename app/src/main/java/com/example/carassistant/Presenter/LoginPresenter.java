@@ -56,7 +56,6 @@ public class LoginPresenter implements LoginInterface.Presenter{
                             Utils.setShare2(context,"userName",dataobject.get("userName").getAsString());
                             //Utils.setShare2(context,"userId",dataobject.get("userId").getAsString());
                             Utils.setShare2(context,"flag","1");
-
                             view.succeed();
                         }else {
                             Toast.makeText(context,"用户名或密码错误！",Toast.LENGTH_LONG).show();

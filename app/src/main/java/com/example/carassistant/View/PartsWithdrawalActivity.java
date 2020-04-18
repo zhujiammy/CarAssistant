@@ -84,7 +84,8 @@ public class PartsWithdrawalActivity extends AppCompatActivity {
                                     TextView partName = view.findViewById(R.id.partName);
                                     TextView partCode = view.findViewById(R.id.partCode);
                                     TextView partPrice = view.findViewById(R.id.partPrice);
-                                    num.setText(""+i);
+                                    int sum = i+1;
+                                    num.setText(""+sum);
                                     if(!pardetailobj.get("partName").isJsonNull()){
                                         partName.setText(pardetailobj.get("partName").getAsString());
                                     }else {

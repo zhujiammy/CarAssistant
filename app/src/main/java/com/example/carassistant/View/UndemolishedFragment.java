@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -182,9 +183,16 @@ public class UndemolishedFragment extends Fragment implements View.OnClickListen
                                     JsonArray jsonArray = jsonObject.get("data").getAsJsonArray();
                                     if(jsonArray.size()>0){
                                         JsonObject jsonObject1 = jsonArray.get(position).getAsJsonObject();
-                                        remark.setText(jsonObject1.get("remark").getAsString());
+                                        if(!jsonObject1.get("remark").isJsonNull()){
+                                            remark.setText(jsonObject1.get("remark").getAsString());
+                                        }else {
+                                            remark.setText("");
+                                        }
+
                                         disDetailsId = jsonObject1.get("disDetailsId").getAsString();
-                                        partRepertoryId = jsonObject1.get("partRepertoryId").getAsString();
+                                        if(!jsonObject1.get("partRepertoryId").isJsonNull()){
+                                            partRepertoryId = jsonObject1.get("partRepertoryId").getAsString();
+                                        }
                                         if(!jsonObject1.get("picUrl").isJsonNull()){
                                             picUrl = jsonObject1.get("picUrl").getAsString();
                                         }else {
@@ -296,7 +304,7 @@ public class UndemolishedFragment extends Fragment implements View.OnClickListen
                     try {
                         String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
                         JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
-                        Log.e("TAG", "onResponse: "+jsonStr );
+                        Log.e("TAG", "jsonStr: "+jsonStr );
 
                         if(jsonObject.get("status").getAsInt() == 0){
                             JsonArray jsonArray = jsonObject.get("data").getAsJsonArray();
@@ -304,7 +312,11 @@ public class UndemolishedFragment extends Fragment implements View.OnClickListen
                                 myListener.sendValue("1");
                                 dicts4.clear();
                                 for(int i = 0;i<jsonArray.size();i++){
-                                    dicts4.add(new AllData("",jsonArray.get(i).getAsJsonObject().get("partName").getAsString()));
+                                    if(!jsonArray.get(i).getAsJsonObject().get("partName").isJsonNull()){
+                                        dicts4.add(new AllData("",jsonArray.get(i).getAsJsonObject().get("partName").getAsString()));
+                                    }else {
+                                        dicts4.add(new AllData("","无配件"));
+                                    }
                                     arrAdapterpay4 = new ArrayAdapter<AllData>(getActivity(), R.layout.simple_spinner_item,dicts4);
                                     //设置样式
                                     arrAdapterpay4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -488,6 +500,10 @@ public class UndemolishedFragment extends Fragment implements View.OnClickListen
             }else {
                 if(filePath.equals("")){
                     Toast.makeText(getActivity(),"请上传配件图片",Toast.LENGTH_SHORT).show();
+                }else if(TextUtils.isEmpty(remark.getText().toString())){
+                    Toast.makeText(getActivity(),"配件备注不能为空",Toast.LENGTH_SHORT).show();
+                }else if(TextUtils.isEmpty(weight.getText().toString())){
+                    Toast.makeText(getActivity(),"配件重量不能为空",Toast.LENGTH_SHORT).show();
                 }else {
                     progressDialog = new ProgressDialog(getActivity(),
                             R.style.AppTheme_Dark_Dialog);

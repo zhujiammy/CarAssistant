@@ -90,7 +90,7 @@ public class DismantledFragment extends Fragment implements View.OnClickListener
     private String disListId;
     private TakePhoto takePhoto;
     public InvokeParam invokeParam;
-    private String filePath;
+    private String filePath = "";
     private String picUrl;
     private String disDetailsId;
     private String partRepertoryId;
@@ -193,8 +193,17 @@ public class DismantledFragment extends Fragment implements View.OnClickListener
                                         status.setSelection(3);
                                     }
 
-                                    weight.setText(jsonObject1.get("weight").getAsString());
-                                    disRemark.setText(jsonObject1.get("disRemark").getAsString());
+                                    if(!jsonObject1.get("weight").isJsonNull()){
+                                        weight.setText(jsonObject1.get("weight").getAsString());
+                                    }else {
+                                        weight.setText("无");
+                                    }
+                                    if(!jsonObject1.get("disRemark").isJsonNull()){
+                                        disRemark.setText(jsonObject1.get("disRemark").getAsString());
+                                    }else {
+                                        disRemark.setText("无");
+                                    }
+
 
 
 
@@ -502,44 +511,50 @@ public class DismantledFragment extends Fragment implements View.OnClickListener
             progressDialog.setCancelable(false);
             progressDialog.setMessage("正在提交....");
             progressDialog.show();
-            final File file = new File(filePath);
-            RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"),file);
-            MultipartBody.Part part;
-            if(file.length() == 0){
-                 part = MultipartBody.Part.createFormData("","");
+            if(filePath.equals("")){
+                Toast.makeText(getActivity(),"请上传配件图片",Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }else {
-                part = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+                final File file = new File(filePath);
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+                MultipartBody.Part part;
+                if(file.length() == 0){
+                    part = MultipartBody.Part.createFormData("","");
+                }else {
+                    part = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+                }
+
+                Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).dismantleComplete(Utils.getShared2(getActivity(),"token"),disDetailsId,partRepertoryId,partNamestr,
+                        filePath,remark.getText().toString(),colorstr,qualitystr,texturestr,weight.getText().toString(),disRemark.getText().toString(),statusstr,part);
+                call.enqueue(new Callback<ResponseBody>(){
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response){
+                        if(response.body()!=null){
+                            try {
+                                String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
+                                JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
+                                if(jsonObject.get("status").getAsInt() == 0){
+                                    Toast.makeText(getActivity(),"提交成功",Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }else {
+                                    Toast.makeText(getActivity(),jsonObject.get("msg").getAsString(),Toast.LENGTH_SHORT).show();
+                                    progressDialog.dismiss();
+                                }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Toast.makeText(getActivity(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                    }
+                });
             }
 
-            Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).dismantleComplete(Utils.getShared2(getActivity(),"token"),disDetailsId,partRepertoryId,partNamestr,
-                    filePath,remark.getText().toString(),colorstr,qualitystr,texturestr,weight.getText().toString(),disRemark.getText().toString(),statusstr,part);
-            call.enqueue(new Callback<ResponseBody>(){
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response){
-                    if(response.body()!=null){
-                        try {
-                            String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
-                            JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
-                            if(jsonObject.get("status").getAsInt() == 0){
-                                Toast.makeText(getActivity(),"提交成功",Toast.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
-                            }else {
-                                Toast.makeText(getActivity(),jsonObject.get("msg").getAsString(),Toast.LENGTH_SHORT).show();
-                                progressDialog.dismiss();
-                            }
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Toast.makeText(getActivity(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
-                    progressDialog.dismiss();
-                }
-            });
         }
     }
 

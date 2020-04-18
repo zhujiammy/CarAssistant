@@ -45,8 +45,7 @@ public class DismantlingDetailActivity extends AppCompatActivity {
     TextView enterTime;//入场时间
     @BindView(R.id.remark)
     TextView remark;//备注
-    @BindView(R.id.partsNum)
-    TextView partsNum;//配件总数
+
     @BindView(R.id.createDate)
     TextView createDate;//创建时间
     @BindView(R.id.createPerson)
@@ -115,11 +114,11 @@ public class DismantlingDetailActivity extends AppCompatActivity {
                                 remark.setText("无");
                             }
 
-                            if(!object.get("partName").isJsonNull()){
-                                partsNum.setText(object.get("partName").getAsString());
+                        /*    if(!object.get("partsNum").isJsonNull()){
+                                partsNum.setText(object.get("partsNum").getAsString());
                             }else {
                                 partsNum.setText("无");
-                            }
+                            }*/
                             if(!object.get("createDate").isJsonNull()){
                                 createDate.setText(object.get("createDate").getAsString());
                             }else {
@@ -136,8 +135,9 @@ public class DismantlingDetailActivity extends AppCompatActivity {
                                     View view = View.inflate(getApplicationContext(),R.layout.accessories_details,null);
                                     TextView num = view.findViewById(R.id.num);
                                     TextView name = view.findViewById(R.id.name);
-                                    num.setText(""+i);
-                                    name.setText(object.get("partDetails").getAsJsonArray().get(i).toString());
+                                    int sum = i+1;
+                                    num.setText(""+sum);
+                                    name.setText(object.get("partDetails").getAsJsonArray().get(i).getAsJsonObject().get("partName").getAsString());
                                     group_lin.addView(view);
                                 }
                             }

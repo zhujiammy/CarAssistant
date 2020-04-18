@@ -99,7 +99,12 @@ public class BrokenListAdapter extends RecyclerView.Adapter implements View.OnCl
                 ((BodyViewHolder) viewHolder).crushListCode.setText("无");
             }
             if(!object.get("state").isJsonNull()){
-                ((BodyViewHolder) viewHolder).state.setText(object.get("state").getAsString());
+                if(object.get("state").getAsString().equals("0")){
+                    ((BodyViewHolder) viewHolder).state.setText("待破碎");
+                }else if(object.get("state").getAsString().equals("1")){
+                    ((BodyViewHolder) viewHolder).state.setText("已破碎");
+                }
+
             }
             else {
                 ((BodyViewHolder) viewHolder).state.setText("无");

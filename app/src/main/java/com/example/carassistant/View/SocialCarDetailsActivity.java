@@ -219,12 +219,19 @@ public class SocialCarDetailsActivity extends AppCompatActivity implements HoldT
                         JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
                         if(jsonObject.get("status").getAsInt() == 0){
                             JsonArray data = jsonObject.get("data").getAsJsonArray();
+                            Log.e("TAG", "onResponse: "+data );
                             traceList.clear();
                             for(int i = 0;i<data.size();i++){
                                 Trace trace = new Trace();
                                 JsonObject object =data.get(i).getAsJsonObject();
                                 trace.setAcceptTime(object.get("processDate").getAsString());
                                 trace.setAcceptStation(object.get("processName").getAsString());
+                                if(!object.get("processor").isJsonNull()){
+                                    trace.setProcessor(object.get("processor").getAsString());
+                                }else {
+                                    trace.setProcessor("无");
+                                }
+
                                 traceList.add(trace);
                             }
 

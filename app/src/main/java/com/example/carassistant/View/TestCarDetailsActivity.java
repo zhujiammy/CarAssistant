@@ -229,7 +229,12 @@ public class TestCarDetailsActivity extends AppCompatActivity implements HoldTab
                                 JsonObject object =data.get(i).getAsJsonObject();
                                 trace.setAcceptTime(object.get("processDate").getAsString());
                                 trace.setAcceptStation(object.get("processName").getAsString());
-                                trace.setProcessor(object.get("processor").getAsString());
+                                if(!object.get("processor").isJsonNull()){
+                                    trace.setProcessor(object.get("processor").getAsString());
+                                }else {
+                                    trace.setProcessor("无");
+                                }
+
                                 traceList.add(trace);
                             }
 

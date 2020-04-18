@@ -275,6 +275,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/carSource_lin"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -299,6 +300,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/carType_lin"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -323,6 +325,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/carcode_lin"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -347,6 +350,7 @@
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/isDestroy_lin"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_width="match_parent"

@@ -180,8 +180,9 @@ public class VehicleInspectionDetailActivity extends AppCompatActivity implement
         this.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         initEvent();
-        searchInitialSurveyDetail();//获取待初检车辆明细
         COLOUR_TYPE();//车身颜色
+        searchInitialSurveyDetail();//获取待初检车辆明细
+
     }
 
 
@@ -360,6 +361,7 @@ public class VehicleInspectionDetailActivity extends AppCompatActivity implement
                     try {
                         String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
                         JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
+                        Log.e("jsonStr", "onResponse: "+jsonStr );
                         if(jsonObject.get("status").getAsInt() == 0){
                             if(!jsonObject.get("data").isJsonNull()){
                                 JsonObject data = jsonObject.get("data").getAsJsonObject();
@@ -387,14 +389,18 @@ public class VehicleInspectionDetailActivity extends AppCompatActivity implement
                                 carSeatAmount.setText(data.get("carSeatAmount").getAsString());
                                 airConditioningAmount.setText(data.get("airConditioningAmount").getAsString());
                                 threeWayCatalystAmount.setText(data.get("threeWayCatalystAmount").getAsString());
-                                carWeight.setText(data.get("carWeight").getAsString());
-                                int k= arrAdapterpay1.getCount();
-                                for(int i=0;i<k;i++){
-                                    if(data.get("carColor").getAsString().equals(arrAdapterpay1.getItem(i).getText())){
-                                        carColor.setSelection(i,true);// 默认选中项
-                                        break;
-                                    }
+                                //carWeight.setText(data.get("carWeight").getAsString());
+
+
+                                if(data.get("isCarAluminumRing").getAsInt() == 0){
+                                    isCarAluminumRing = 0;
+                                    NRB.setChecked(true);
                                 }
+                                if(data.get("isCarAluminumRing").getAsInt() == 1){
+                                    isCarAluminumRing = 1;
+                                    YRB.setChecked(true);
+                                }
+
                                 if(data.get("carEngine").getAsInt() == 0){
                                     carEngine = 0;
                                     engine_r2.setChecked(true);
@@ -427,15 +433,22 @@ public class VehicleInspectionDetailActivity extends AppCompatActivity implement
                                     steeringGearBox = 1;
                                     steeringGearBox_r1.setChecked(true);
                                 }
+                                Log.e("carFrame", "carFrame: "+ data.get("carFrame").getAsInt());
                                 if(data.get("carFrame").getAsInt() == 0){
                                     carFrame = 0;
                                     frame_r2.setChecked(true);
-                                }
-                                if(data.get("carFrame").getAsInt() == 1){
+                                }else if(data.get("carFrame").getAsInt() == 1){
                                     carFrame = 1;
                                     frame_r1.setChecked(true);
                                 }
                                 remark.setText(data.get("remark").getAsString());
+                                int k= arrAdapterpay1.getCount();
+                                for(int i=0;i<k;i++){
+                                    if(data.get("carColor").getAsString().equals(arrAdapterpay1.getItem(i).getText())){
+                                        carColor.setSelection(i,true);// 默认选中项
+                                        break;
+                                    }
+                                }
                             }
                         }else {
                             Toast.makeText(getApplicationContext(),jsonObject.get("msg").getAsString(),Toast.LENGTH_SHORT).show();
@@ -462,7 +475,6 @@ public class VehicleInspectionDetailActivity extends AppCompatActivity implement
                     try {
                         String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
                         JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
-                        Log.e("TAG", "onResponse: "+jsonStr );
                         if(jsonObject.get("status").getAsInt() == 0){
                             JsonArray jsonElements = jsonObject.getAsJsonArray("data");
                             for(int i = 0;i<jsonElements.size();i++){

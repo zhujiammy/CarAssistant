@@ -57,7 +57,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="车联编号:"
+                    android:text="车辆编号:"
                     />
                 <TextView
                     android:padding="3dp"
@@ -194,29 +194,6 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <LinearLayout
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp">
-                    <TextView
-                        android:textSize="15sp"
-                        android:textColor="@color/grey_700"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="配件总数:"
-                        />
-                    <TextView
-                        android:textSize="15sp"
-                        android:id="@+id/partsNum"
-                        android:textColor="@color/black"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="2323"
-                        />
-
-
-                </LinearLayout>
                 <LinearLayout
                     android:gravity="center_vertical"
                     android:orientation="horizontal"

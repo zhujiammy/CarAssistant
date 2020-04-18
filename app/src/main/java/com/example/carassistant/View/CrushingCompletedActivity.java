@@ -242,6 +242,7 @@ public class CrushingCompletedActivity extends AppCompatActivity implements View
                         });
                     }else {
                         Toast.makeText(getApplicationContext(),"毁型前、毁型中、毁型后3个类型每个至少传一张图片",Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
 
                 }

@@ -117,11 +117,16 @@ public class SalesSlipAdapter extends RecyclerView.Adapter implements View.OnCli
             else {
                 ((BodyViewHolder) viewHolder).linkManName.setText("无");
             }
-            if(!object.get("province").isJsonNull()|| !object.get("city").isJsonNull()|| !object.get("area").isJsonNull() || !object.get("address").isJsonNull()){
-                ((BodyViewHolder) viewHolder).address.setText(object.get("province").getAsString()+object.get("city").getAsString()+object.get("area").getAsString()+object.get("address").getAsString());
+            if( !object.get("province").isJsonNull()|| !object.get("city").isJsonNull()|| !object.get("area").isJsonNull() ){
+                if(!object.get("address").isJsonNull()){
+                    ((BodyViewHolder) viewHolder).address.setText(object.get("province").getAsString()+object.get("city").getAsString()+object.get("area").getAsString()+object.get("address").getAsString());
+                }else {
+                    ((BodyViewHolder) viewHolder).address.setText(object.get("province").getAsString()+object.get("city").getAsString()+object.get("area").getAsString());
+                }
+
             }
             else {
-                ((BodyViewHolder) viewHolder).linkManName.setText("无");
+                ((BodyViewHolder) viewHolder).address.setText("无");
             }
 
             if(!object.get("linkManPhone").isJsonNull()){

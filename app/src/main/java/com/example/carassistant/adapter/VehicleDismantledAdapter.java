@@ -27,9 +27,11 @@ public class VehicleDismantledAdapter extends RecyclerView.Adapter implements Vi
     public static final int VIEW_TYPE_EMPTY = 0;
     private Context context;
     private JsonArray model;
-    public VehicleDismantledAdapter(Context context,JsonArray model){
+    private String disType;
+    public VehicleDismantledAdapter(Context context,JsonArray model,String disType){
         this.context = context;
         this.model = model;
+        this.disType = disType;
 
     }
 
@@ -85,41 +87,51 @@ public class VehicleDismantledAdapter extends RecyclerView.Adapter implements Vi
                 ((BodyViewHolder) viewHolder).createDate.setText("无");
             }
 
-            if(!object.get("carCode").isJsonNull()){
-                ((BodyViewHolder) viewHolder).carCode.setText(object.get("carCode").getAsString());
+            if(disType.equals("0")){
+                if(!object.get("carSource").isJsonNull()){
+                    ((BodyViewHolder) viewHolder).carSource.setText(object.get("carSource").getAsString());
+                }
+                else {
+                    ((BodyViewHolder) viewHolder).carSource.setText("无");
+                }
+            }else {
+                ((BodyViewHolder) viewHolder).carSource_lin.setVisibility(View.GONE);
             }
-            else {
-                ((BodyViewHolder) viewHolder).carCode.setText("无");
+
+            if(disType.equals("0")){
+                if(!object.get("carType").isJsonNull()){
+                    ((BodyViewHolder) viewHolder).carType.setText(object.get("carType").getAsString());
+                }
+                else {
+                    ((BodyViewHolder) viewHolder).carType.setText("无");
+                }
+            }else {
+                ((BodyViewHolder) viewHolder).carType_lin.setVisibility(View.GONE);
             }
 
 
-
-            if(!object.get("carSource").isJsonNull()){
-                ((BodyViewHolder) viewHolder).carSource.setText(object.get("carSource").getAsString());
-            }
-            else {
-                ((BodyViewHolder) viewHolder).carSource.setText("无");
-            }
-
-            if(!object.get("carType").isJsonNull()){
-                ((BodyViewHolder) viewHolder).carType.setText(object.get("carType").getAsString());
-            }
-            else {
-                ((BodyViewHolder) viewHolder).carType.setText("无");
-            }
-            if(!object.get("carCode").isJsonNull()){
-                ((BodyViewHolder) viewHolder).carCode.setText(object.get("carCode").getAsString());
-            }
-            else {
-                ((BodyViewHolder) viewHolder).carCode.setText("无");
+            if(disType.equals("0")){
+                if(!object.get("carCode").isJsonNull()){
+                    ((BodyViewHolder) viewHolder).carCode.setText(object.get("carCode").getAsString());
+                }
+                else {
+                    ((BodyViewHolder) viewHolder).carCode.setText("无");
+                }
+            }else {
+                ((BodyViewHolder) viewHolder).carcode_lin.setVisibility(View.GONE);
             }
 
-            if(!object.get("isDestroy").isJsonNull()){
-                ((BodyViewHolder) viewHolder).isDestroy.setText(object.get("isDestroy").getAsString());
+            if(disType.equals("0")){
+                if(!object.get("isDestroy").isJsonNull()){
+                    ((BodyViewHolder) viewHolder).isDestroy.setText(object.get("isDestroy").getAsString());
+                }
+                else {
+                    ((BodyViewHolder) viewHolder).isDestroy.setText("无");
+                }
+            }else {
+                ((BodyViewHolder) viewHolder).isDestroy_lin.setVisibility(View.GONE);
             }
-            else {
-                ((BodyViewHolder) viewHolder).isDestroy.setText("无");
-            }
+
 
             if(object.get("partName") != null){
                 if(!object.get("partName").isJsonNull()){
@@ -203,13 +215,17 @@ public class VehicleDismantledAdapter extends RecyclerView.Adapter implements Vi
         private TextView carType;
         private TextView carCode;
         private TextView isDestroy;
-        private LinearLayout partName_lin,partCode_lin;
+        private LinearLayout partName_lin,partCode_lin,carcode_lin,carSource_lin,carType_lin,isDestroy_lin;
 
 
         public BodyViewHolder(View itemView) {
             super(itemView);
             partName_lin = (LinearLayout) itemView.findViewById(R.id.partName_lin);
             partCode_lin = (LinearLayout) itemView.findViewById(R.id.partCode_lin);
+            carcode_lin = (LinearLayout) itemView.findViewById(R.id.carcode_lin);
+            carSource_lin = (LinearLayout) itemView.findViewById(R.id.carSource_lin);
+            isDestroy_lin = (LinearLayout) itemView.findViewById(R.id.isDestroy_lin);
+            carType_lin = (LinearLayout) itemView.findViewById(R.id.carType_lin);
             listCode = (TextView) itemView.findViewById(R.id.listCode);
             remark = (TextView) itemView.findViewById(R.id.remark);
             createPerson = (TextView) itemView.findViewById(R.id.createPerson);

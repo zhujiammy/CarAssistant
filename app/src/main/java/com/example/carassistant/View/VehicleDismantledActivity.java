@@ -67,7 +67,7 @@ public class VehicleDismantledActivity extends AppCompatActivity implements Vehi
             toolbar_title.setText("待拆解配件");
         }
         initUI();
-        presenter = new VehicleDismantledPresenter(this,this,recyclerView,adapter);
+        presenter = new VehicleDismantledPresenter(this,this,recyclerView,adapter,getIntent().getStringExtra("disType"));
         presenter.Tobedismantled(getIntent().getStringExtra("disType"),null);
     }
 

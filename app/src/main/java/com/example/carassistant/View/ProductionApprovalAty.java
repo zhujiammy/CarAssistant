@@ -323,6 +323,7 @@ public class ProductionApprovalAty extends AppCompatActivity implements SProduct
 
                         @Override
                         public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Log.e("TAG", "onFailure: "+t.getMessage() );
                             Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                         }
@@ -340,6 +341,37 @@ public class ProductionApprovalAty extends AppCompatActivity implements SProduct
                                         Toast.makeText(getApplicationContext(),"提交成功",Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
                                         brokenPresenter.crushManagerapprovallist("1","100","2",null);
+
+                                    }else {
+                                        Toast.makeText(getApplicationContext(),jsonObject.get("msg").getAsString(),Toast.LENGTH_SHORT).show();
+                                        progressDialog.dismiss();
+                                    }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(),"连接超时，请检查网络环境，避免影响使用！",Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                    });
+                }else if(type == 3){
+                    Call<ResponseBody> call = HttpHelper.getInstance().create(CarAssistantAPI.class).saleapproval(Utils.getShared2(getApplicationContext(),"token"),body);
+                    call.enqueue(new Callback<ResponseBody>() {
+                        @Override
+                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                            if(response.body()!=null){
+                                try {
+                                    String jsonStr = new String(response.body().bytes());//把原始数据转为字符串
+                                    JsonObject jsonObject = (JsonObject) new JsonParser().parse(jsonStr);
+                                    if(jsonObject.get("status").getAsInt() == 0){
+                                        Toast.makeText(getApplicationContext(),"提交成功",Toast.LENGTH_SHORT).show();
+                                        progressDialog.dismiss();
+                                        salesSlipPresenter.saleapprovallist("1","100","2",null);
 
                                     }else {
                                         Toast.makeText(getApplicationContext(),jsonObject.get("msg").getAsString(),Toast.LENGTH_SHORT).show();

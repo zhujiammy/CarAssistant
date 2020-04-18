@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -65,14 +66,15 @@
         android:layout_below="@id/top"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="NotSibling">
 
         <LinearLayout
             android:orientation="vertical"
             android:id="@+id/refreshLayout1"
-            android:layout_width="match_parent"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
-            android:layout_weight="3">
+           >
 
             <RadioGroup
                 android:orientation="vertical"
@@ -133,7 +135,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -173,7 +174,6 @@
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/refreshLayout"
                 android:layout_width="match_parent"
-                android:layout_weight="1"
                 android:layout_height="match_parent">
                 <com.example.carassistant.utils.RecyclerViewEmptySupport
                     android:id="@+id/recyclerView"

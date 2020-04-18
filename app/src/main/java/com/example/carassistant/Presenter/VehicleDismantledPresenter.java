@@ -39,13 +39,15 @@ public class VehicleDismantledPresenter implements VehicleDismantledInterface.Pr
     public VehicleDismantledInterface.View view;
     public Context context;
     JsonArray jsonElements;
+    private String disType;
     private VehicleDismantledAdapter adapter;
     RecyclerViewEmptySupport recyclerView;
-    public VehicleDismantledPresenter(VehicleDismantledInterface.View view,Context context,RecyclerViewEmptySupport recyclerView,VehicleDismantledAdapter adapter){
+    public VehicleDismantledPresenter(VehicleDismantledInterface.View view,Context context,RecyclerViewEmptySupport recyclerView,VehicleDismantledAdapter adapter,String disType){
         this.view = view;
         this.context =context;
         this.adapter = adapter;
         this.recyclerView = recyclerView;
+        this.disType = disType;
     }
 
     @Override
@@ -61,7 +63,7 @@ public class VehicleDismantledPresenter implements VehicleDismantledInterface.Pr
                         Log.e("TAG", "onResponse: "+jsonStr );
                         if(jsonObject.get("status").getAsInt() == 0){
                             jsonElements = jsonObject.getAsJsonArray("data");
-                            adapter = new VehicleDismantledAdapter(context,jsonElements);
+                            adapter = new VehicleDismantledAdapter(context,jsonElements,disType);
                             adapter.setOnitemClickListener(new VehicleDismantledAdapter.OnitemClickListener() {
                                 @Override
                                 public void onItemClick(View view, int position) {

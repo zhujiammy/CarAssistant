@@ -29,13 +29,13 @@
                 <LinearLayout
                     android:background="@drawable/edit"
                     android:layout_margin="3dp"
-                    android:layout_width="110dp"
+                    android:layout_width="150dp"
                     android:layout_height="match_parent">
                     <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/partName"
                         android:layout_margin="2dp"
                         android:background="@drawable/spinner_drop_down_shape"
-                        android:layout_width="100dp"
+                        android:layout_width="140dp"
                         android:layout_height="match_parent"/>
                 </LinearLayout>
             </LinearLayout>
